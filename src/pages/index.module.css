@@ -1,0 +1,29 @@
+.hero {
+  padding: 3rem 0 2rem;
+  background: linear-gradient(135deg, var(--ifm-color-primary-darkest), var(--ifm-color-primary));
+  color: #fff;
+}
+
+.heroTitle {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.heroSubtitle {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 1.05rem;
+  max-width: 60ch;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.empty {
+  text-align: center;
+  color: var(--instijl-muted);
+  padding: 3rem 0;
+}

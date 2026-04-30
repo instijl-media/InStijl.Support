@@ -1,0 +1,40 @@
+.bar {
+  display: grid;
+  grid-template-columns: minmax(220px, 2fr) repeat(3, minmax(140px, 1fr));
+  gap: 0.75rem;
+  align-items: end;
+  margin-bottom: 1.5rem;
+}
+
+.search {
+  width: 100%;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--instijl-card-border);
+  border-radius: 8px;
+  background: var(--instijl-card-bg);
+  color: inherit;
+  font: inherit;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--instijl-muted);
+}
+
+.field select {
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--instijl-card-border);
+  border-radius: 8px;
+  background: var(--instijl-card-bg);
+  color: inherit;
+  font: inherit;
+}
+
+@media (max-width: 768px) {
+  .bar {
+    grid-template-columns: 1fr;
+  }
+}

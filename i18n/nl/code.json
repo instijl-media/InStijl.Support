@@ -1,0 +1,24 @@
+{
+  "home.title": {"message": "InStijl Support"},
+  "home.description": {"message": "Documentatie voor alle InStijl-apps en -thema's voor Lightspeed en Shopify."},
+  "home.heroTitle": {"message": "InStijl Support"},
+  "home.heroSubtitle": {"message": "Documentatie voor onze apps en thema's voor Lightspeed en Shopify."},
+  "home.empty": {"message": "Geen apps of thema's voldoen aan deze filters."},
+
+  "filter.searchPlaceholder": {"message": "Zoek apps & thema's…"},
+  "filter.platform": {"message": "Platform"},
+  "filter.type": {"message": "Type"},
+  "filter.status": {"message": "Status"},
+  "filter.all": {"message": "Alle"},
+
+  "type.app": {"message": "App"},
+  "type.theme": {"message": "Thema"},
+
+  "status.active": {"message": "Actief"},
+  "status.beta": {"message": "Beta"},
+  "status.deprecated": {"message": "Verouderd"},
+
+  "theme.navbar.title": {"message": "InStijl Support"},
+  "theme.navbar.apps": {"message": "Apps"},
+  "theme.navbar.themes": {"message": "Thema's"}
+}

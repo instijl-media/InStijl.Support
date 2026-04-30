@@ -1,0 +1,45 @@
+/**
+ * InStijl Support — brand tokens.
+ *
+ * Replace the primary palette with brand-supplied hex values once available.
+ */
+
+:root {
+  --ifm-color-primary: #3a5bdc;
+  --ifm-color-primary-dark: #2a4cd0;
+  --ifm-color-primary-darker: #2748c4;
+  --ifm-color-primary-darkest: #203ba1;
+  --ifm-color-primary-light: #5573e2;
+  --ifm-color-primary-lighter: #6580e5;
+  --ifm-color-primary-lightest: #92a6ee;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  --instijl-radius: 12px;
+  --instijl-card-border: rgba(0, 0, 0, 0.08);
+  --instijl-card-bg: #ffffff;
+  --instijl-muted: #6b7280;
+
+  --instijl-platform-lightspeed: #ff6a13;
+  --instijl-platform-shopify: #95bf47;
+  --instijl-platform-both: #6366f1;
+
+  --instijl-status-active: #16a34a;
+  --instijl-status-beta: #ca8a04;
+  --instijl-status-deprecated: #b91c1c;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #8aa3ff;
+  --ifm-color-primary-dark: #6e8bff;
+  --ifm-color-primary-darker: #607fff;
+  --ifm-color-primary-darkest: #3859ff;
+  --ifm-color-primary-light: #a6bbff;
+  --ifm-color-primary-lighter: #b3c5ff;
+  --ifm-color-primary-lightest: #d0dcff;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  --instijl-card-border: rgba(255, 255, 255, 0.1);
+  --instijl-card-bg: #1b1b1d;
+  --instijl-muted: #9ca3af;
+}

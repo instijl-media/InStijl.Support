@@ -1,0 +1,143 @@
+# PagesCMS configuration for instijl.support
+# Docs: https://pagescms.org/docs/configuration
+
+media:
+  input: static/img
+  output: /img
+
+components:
+  product_link:
+    label: Link
+    fields:
+      - { name: label, label: Label, type: string, required: true }
+      - { name: url,   label: URL,   type: string, required: true, pattern: '^https?://' }
+
+  product_pricing:
+    label: Pricing
+    fields:
+      - { name: plan,     label: Plan,     type: string }
+      - { name: price,    label: Price,    type: string }
+      - { name: interval, label: Interval, type: select, options: [month, year, one-time] }
+      - { name: currency, label: Currency, type: select, options: [EUR, USD, GBP] }
+
+content:
+  ##############################################################################
+  # English source content (default locale)
+  ##############################################################################
+  - name: apps_en
+    label: Apps (EN)
+    type: collection
+    path: content/apps
+    subfolders: true
+    match: '*/index.mdx'
+    view:
+      fields: [title, platform, type, status]
+    fields:
+      - { name: title,    label: Title,    type: string, required: true }
+      - { name: slug,     label: URL slug, type: string, required: true, pattern: '^/[a-z0-9-]+$' }
+      - { name: type,     label: Type,     type: select, required: true, options: [app, theme], default: app }
+      - { name: platform, label: Platform, type: select, required: true, options: [lightspeed, shopify, both] }
+      - { name: status,   label: Status,   type: select, required: true, options: [active, beta, deprecated], default: active }
+      - { name: summary,  label: Summary,  type: text, required: true }
+      - { name: logo,     label: Logo,     type: image }
+      - { name: cover,    label: Cover,    type: image }
+      - { name: order,    label: Sort order, type: number }
+      - { name: sidebar_position, label: Sidebar position, type: number }
+      - { name: pricing,  label: Pricing,  type: object, fields: '$components.product_pricing.fields' }
+      - { name: links,    label: External links, type: list, fields: '$components.product_link.fields' }
+      - { name: body,     label: Content,  type: text, format: markdown }
+
+  - name: apps_en_pages
+    label: Apps · subpages (EN)
+    type: collection
+    path: content/apps
+    subfolders: true
+    match: '*/!(index).mdx'
+    view:
+      fields: [title]
+    fields:
+      - { name: title,            label: Title,           type: string, required: true }
+      - { name: sidebar_position, label: Sidebar position, type: number }
+      - { name: body,             label: Content,         type: text, format: markdown }
+
+  - name: themes_en
+    label: Themes (EN)
+    type: collection
+    path: content/themes
+    subfolders: true
+    match: '*/index.mdx'
+    view:
+      fields: [title, platform, status]
+    fields:
+      - { name: title,    label: Title,    type: string, required: true }
+      - { name: slug,     label: URL slug, type: string, required: true, pattern: '^/[a-z0-9-]+$' }
+      - { name: type,     label: Type,     type: select, required: true, options: [app, theme], default: theme }
+      - { name: platform, label: Platform, type: select, required: true, options: [lightspeed, shopify, both] }
+      - { name: status,   label: Status,   type: select, required: true, options: [active, beta, deprecated], default: active }
+      - { name: summary,  label: Summary,  type: text, required: true }
+      - { name: logo,     label: Logo,     type: image }
+      - { name: cover,    label: Cover,    type: image }
+      - { name: order,    label: Sort order, type: number }
+      - { name: sidebar_position, label: Sidebar position, type: number }
+      - { name: pricing,  label: Pricing,  type: object, fields: '$components.product_pricing.fields' }
+      - { name: links,    label: External links, type: list, fields: '$components.product_link.fields' }
+      - { name: body,     label: Content,  type: text, format: markdown }
+
+  - name: themes_en_pages
+    label: Themes · subpages (EN)
+    type: collection
+    path: content/themes
+    subfolders: true
+    match: '*/!(index).mdx'
+    fields:
+      - { name: title,            label: Title,           type: string, required: true }
+      - { name: sidebar_position, label: Sidebar position, type: number }
+      - { name: body,             label: Content,         type: text, format: markdown }
+
+  ##############################################################################
+  # Dutch translations — same field shape, different paths
+  ##############################################################################
+  - name: apps_nl
+    label: Apps (NL)
+    type: collection
+    path: i18n/nl/docusaurus-plugin-content-docs-apps/current
+    subfolders: true
+    match: '*/index.mdx'
+    view:
+      fields: [title, platform, status]
+    fields: '$content.apps_en.fields'
+
+  - name: apps_nl_pages
+    label: Apps · subpaginas (NL)
+    type: collection
+    path: i18n/nl/docusaurus-plugin-content-docs-apps/current
+    subfolders: true
+    match: '*/!(index).mdx'
+    fields: '$content.apps_en_pages.fields'
+
+  - name: themes_nl
+    label: Themes (NL)
+    type: collection
+    path: i18n/nl/docusaurus-plugin-content-docs-themes/current
+    subfolders: true
+    match: '*/index.mdx'
+    view:
+      fields: [title, platform, status]
+    fields: '$content.themes_en.fields'
+
+  - name: themes_nl_pages
+    label: Themes · subpaginas (NL)
+    type: collection
+    path: i18n/nl/docusaurus-plugin-content-docs-themes/current
+    subfolders: true
+    match: '*/!(index).mdx'
+    fields: '$content.themes_en_pages.fields'
+
+  ##############################################################################
+  # Translatable UI strings (homepage / filter labels)
+  ##############################################################################
+  - name: ui_strings_nl
+    label: UI strings (NL)
+    type: file
+    path: i18n/nl/code.json
+    format: json
