@@ -2,6 +2,45 @@ media:
   input: static/img/products
   output: /img/products
 
+# ─── Reusable field definitions ───────────────────────────────────────────────
+# YAML anchors — referenced below with *overview-fields / *subpage-fields.
+# To add a new app or theme, copy one of the existing product groups, update
+# the name/label/path values, and leave `fields: *overview-fields` as-is.
+
+x-overview-fields: &overview-fields
+  - { name: title,      label: "Title (EN)",    type: string, required: true }
+  - { name: nl_title,   label: "Title (NL)",    type: string, required: true }
+  - { name: summary,    label: "Summary (EN)",  type: text,   required: true }
+  - { name: nl_summary, label: "Summary (NL)",  type: text,   required: true }
+  - name: platform
+    label: Platform
+    type: select
+    options:
+      values:
+        - { name: lightspeed, label: Lightspeed }
+        - { name: shopify,    label: Shopify }
+        - { name: both,       label: Both }
+  - name: status
+    label: Status
+    type: select
+    options:
+      values:
+        - { name: active,     label: Active }
+        - { name: beta,       label: Beta }
+        - { name: deprecated, label: Deprecated }
+  - { name: logo,    label: Logo,         type: image }
+  - { name: order,   label: "Sort order", type: number }
+  - { name: type,    label: Type,         type: string, hidden: true }
+  - { name: body,    label: "Content (EN)", type: rich-text }
+  - { name: nl_body, label: "Content (NL)", type: rich-text }
+
+x-subpage-fields: &subpage-fields
+  - { name: title,            label: "Title (EN)",       type: string, required: true }
+  - { name: nl_title,         label: "Title (NL)",       type: string, required: true }
+  - { name: sidebar_position, label: "Sidebar position", type: number }
+  - { name: body,             label: "Content (EN)",     type: rich-text }
+  - { name: nl_body,          label: "Content (NL)",     type: rich-text }
+
 content:
 
   # ═══════════════════════════════════════════════════════════════════════════
@@ -20,97 +59,57 @@ content:
           - name: app_ai_overview
             label: Overview
             type: file
-            path: content/apps/ai/index.mdx
-            fields:
-              - { name: title,      label: "Title (EN)",    type: string, required: true }
-              - { name: nl_title,   label: "Title (NL)",    type: string, required: true }
-              - { name: summary,    label: "Summary (EN)",  type: text,   required: true }
-              - { name: nl_summary, label: "Summary (NL)",  type: text,   required: true }
-              - name: platform
-                label: Platform
-                type: select
-                options:
-                  values:
-                    - { name: lightspeed, label: Lightspeed }
-                    - { name: shopify,    label: Shopify }
-                    - { name: both,       label: Both }
-              - name: status
-                label: Status
-                type: select
-                options:
-                  values:
-                    - { name: active,     label: Active }
-                    - { name: beta,       label: Beta }
-                    - { name: deprecated, label: Deprecated }
-              - { name: logo,     label: Logo,         type: image }
-              - { name: order,    label: "Sort order", type: number }
-              - { name: type,     label: Type,         type: string, hidden: true }
-              - { name: body,     label: "Content (EN)", type: rich-text }
-              - { name: nl_body,  label: "Content (NL)", type: rich-text }
+            path: content/apps/InStijlAI/index.mdx
+            fields: *overview-fields
 
           - name: app_ai_subpages
             label: Subpages
             type: collection
-            path: content/apps/ai
+            path: content/apps/InStijlAI
             match: "*.mdx"
             exclude: ["index.mdx"]
             filename: "{title}.mdx"
-            fields:
-              - { name: title,            label: "Title (EN)",      type: string, required: true }
-              - { name: nl_title,         label: "Title (NL)",      type: string, required: true }
-              - { name: sidebar_position, label: "Sidebar position", type: number }
-              - { name: body,             label: "Content (EN)",    type: rich-text }
-              - { name: nl_body,          label: "Content (NL)",    type: rich-text }
+            fields: *subpage-fields
 
-      # ── Sync ──────────────────────────────────────────────────────────────
-      - name: app_sync
-        label: Sync
+      # ── Postcode Check ────────────────────────────────────────────────────
+      - name: app_postcode_check
+        label: Postcode Check
         type: group
         items:
-          - name: app_sync_overview
+          - name: app_postcode_check_overview
             label: Overview
             type: file
-            path: content/apps/sync/index.mdx
-            fields:
-              - { name: title,      label: "Title (EN)",    type: string, required: true }
-              - { name: nl_title,   label: "Title (NL)",    type: string, required: true }
-              - { name: summary,    label: "Summary (EN)",  type: text,   required: true }
-              - { name: nl_summary, label: "Summary (NL)",  type: text,   required: true }
-              - name: platform
-                label: Platform
-                type: select
-                options:
-                  values:
-                    - { name: lightspeed, label: Lightspeed }
-                    - { name: shopify,    label: Shopify }
-                    - { name: both,       label: Both }
-              - name: status
-                label: Status
-                type: select
-                options:
-                  values:
-                    - { name: active,     label: Active }
-                    - { name: beta,       label: Beta }
-                    - { name: deprecated, label: Deprecated }
-              - { name: logo,     label: Logo,         type: image }
-              - { name: order,    label: "Sort order", type: number }
-              - { name: type,     label: Type,         type: string, hidden: true }
-              - { name: body,     label: "Content (EN)", type: rich-text }
-              - { name: nl_body,  label: "Content (NL)", type: rich-text }
+            path: content/apps/instijl-postcode-check/index.mdx
+            fields: *overview-fields
 
-          - name: app_sync_subpages
+          - name: app_postcode_check_subpages
             label: Subpages
             type: collection
-            path: content/apps/sync
+            path: content/apps/instijl-postcode-check
             match: "*.mdx"
             exclude: ["index.mdx"]
             filename: "{title}.mdx"
-            fields:
-              - { name: title,            label: "Title (EN)",      type: string, required: true }
-              - { name: nl_title,         label: "Title (NL)",      type: string, required: true }
-              - { name: sidebar_position, label: "Sidebar position", type: number }
-              - { name: body,             label: "Content (EN)",    type: rich-text }
-              - { name: nl_body,          label: "Content (NL)",    type: rich-text }
+            fields: *subpage-fields
+
+      # ── Shop Review Block ─────────────────────────────────────────────────
+      - name: app_shop_review_block
+        label: Shop Review Block
+        type: group
+        items:
+          - name: app_shop_review_block_overview
+            label: Overview
+            type: file
+            path: content/apps/instijl-shop-review-block/index.mdx
+            fields: *overview-fields
+
+          - name: app_shop_review_block_subpages
+            label: Subpages
+            type: collection
+            path: content/apps/instijl-shop-review-block
+            match: "*.mdx"
+            exclude: ["index.mdx"]
+            filename: "{title}.mdx"
+            fields: *subpage-fields
 
   # ═══════════════════════════════════════════════════════════════════════════
   # THEMES
@@ -129,32 +128,7 @@ content:
             label: Overview
             type: file
             path: content/themes/inspire/index.mdx
-            fields:
-              - { name: title,      label: "Title (EN)",    type: string, required: true }
-              - { name: nl_title,   label: "Title (NL)",    type: string, required: true }
-              - { name: summary,    label: "Summary (EN)",  type: text,   required: true }
-              - { name: nl_summary, label: "Summary (NL)",  type: text,   required: true }
-              - name: platform
-                label: Platform
-                type: select
-                options:
-                  values:
-                    - { name: lightspeed, label: Lightspeed }
-                    - { name: shopify,    label: Shopify }
-                    - { name: both,       label: Both }
-              - name: status
-                label: Status
-                type: select
-                options:
-                  values:
-                    - { name: active,     label: Active }
-                    - { name: beta,       label: Beta }
-                    - { name: deprecated, label: Deprecated }
-              - { name: logo,     label: Logo,         type: image }
-              - { name: order,    label: "Sort order", type: number }
-              - { name: type,     label: Type,         type: string, hidden: true }
-              - { name: body,     label: "Content (EN)", type: rich-text }
-              - { name: nl_body,  label: "Content (NL)", type: rich-text }
+            fields: *overview-fields
 
           - name: theme_inspire_subpages
             label: Subpages
@@ -163,12 +137,7 @@ content:
             match: "*.mdx"
             exclude: ["index.mdx"]
             filename: "{title}.mdx"
-            fields:
-              - { name: title,            label: "Title (EN)",      type: string, required: true }
-              - { name: nl_title,         label: "Title (NL)",      type: string, required: true }
-              - { name: sidebar_position, label: "Sidebar position", type: number }
-              - { name: body,             label: "Content (EN)",    type: rich-text }
-              - { name: nl_body,          label: "Content (NL)",    type: rich-text }
+            fields: *subpage-fields
 
       # ── Unity ─────────────────────────────────────────────────────────────
       - name: theme_unity
@@ -179,32 +148,7 @@ content:
             label: Overview
             type: file
             path: content/themes/unity/index.mdx
-            fields:
-              - { name: title,      label: "Title (EN)",    type: string, required: true }
-              - { name: nl_title,   label: "Title (NL)",    type: string, required: true }
-              - { name: summary,    label: "Summary (EN)",  type: text,   required: true }
-              - { name: nl_summary, label: "Summary (NL)",  type: text,   required: true }
-              - name: platform
-                label: Platform
-                type: select
-                options:
-                  values:
-                    - { name: lightspeed, label: Lightspeed }
-                    - { name: shopify,    label: Shopify }
-                    - { name: both,       label: Both }
-              - name: status
-                label: Status
-                type: select
-                options:
-                  values:
-                    - { name: active,     label: Active }
-                    - { name: beta,       label: Beta }
-                    - { name: deprecated, label: Deprecated }
-              - { name: logo,     label: Logo,         type: image }
-              - { name: order,    label: "Sort order", type: number }
-              - { name: type,     label: Type,         type: string, hidden: true }
-              - { name: body,     label: "Content (EN)", type: rich-text }
-              - { name: nl_body,  label: "Content (NL)", type: rich-text }
+            fields: *overview-fields
 
           - name: theme_unity_subpages
             label: Subpages
@@ -213,9 +157,4 @@ content:
             match: "*.mdx"
             exclude: ["index.mdx"]
             filename: "{title}.mdx"
-            fields:
-              - { name: title,            label: "Title (EN)",      type: string, required: true }
-              - { name: nl_title,         label: "Title (NL)",      type: string, required: true }
-              - { name: sidebar_position, label: "Sidebar position", type: number }
-              - { name: body,             label: "Content (EN)",    type: rich-text }
-              - { name: nl_body,          label: "Content (NL)",    type: rich-text }
+            fields: *subpage-fields
