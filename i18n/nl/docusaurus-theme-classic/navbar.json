@@ -1,4 +1,22 @@
 {
-  "title": {"message": "InStijl Support", "description": "The title in the navbar"},
-  "tagline": {"message": "Documentatie voor InStijl-apps en -thema's", "description": "The tagline of the site"}
+  "title": {
+    "message": "",
+    "description": "The title in the navbar"
+  },
+  "tagline": {
+    "message": "Documentatie voor InStijl-apps en -thema's",
+    "description": "The tagline of the site"
+  },
+  "logo.alt": {
+    "message": "InStijl",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Apps": {
+    "message": "Apps",
+    "description": "Navbar item with label Apps"
+  },
+  "item.label.Themes": {
+    "message": "Thema's",
+    "description": "Navbar item with label Themes"
+  }
 }

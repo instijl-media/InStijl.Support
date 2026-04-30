@@ -20,6 +20,13 @@ const config: Config = {
   organizationName: 'instijl',
   projectName: 'instijl.support',
 
+  stylesheets: [
+    {
+      href: './src/css/custom.css',
+      type: 'text/css',
+    },
+  ],
+
   onBrokenLinks: 'warn',
   markdown: {
     hooks: {
@@ -98,22 +105,24 @@ const config: Config = {
     image: 'img/social-card.png',
     colorMode: {
       defaultMode: 'light',
-      respectPrefersColorScheme: true,
+      respectPrefersColorScheme: false,
+    },
+    docs: {
+      sidebar: {
+        hideable: true,
+        autoCollapseCategories: true,
+      },
     },
     navbar: {
-      title: 'InStijl Support',
+      title: '',
       logo: {
         alt: 'InStijl',
         src: 'img/logo.svg',
       },
+      hideOnScroll: false,
       items: [
-        {to: '/?type=app', label: 'Apps', position: 'left', activeBaseRegex: '^/(?:[a-z]{2}/)?apps(?:/|$)'},
-        {to: '/?type=theme', label: 'Themes', position: 'left', activeBaseRegex: '^/(?:[a-z]{2}/)?themes(?:/|$)'},
-        {
-          href: 'https://github.com/instijl/instijl.support',
-          label: 'GitHub',
-          position: 'right',
-        },
+        {to: '/apps', label: 'Apps', position: 'left', activeBaseRegex: '^/(?:[a-z]{2}/)?apps(?:/|$|\\?)'},
+        {to: '/themes', label: 'Themes', position: 'left', activeBaseRegex: '^/(?:[a-z]{2}/)?themes(?:/|$|\\?)'},
         {
           type: 'localeDropdown',
           position: 'right',
@@ -126,23 +135,23 @@ const config: Config = {
         {
           title: 'Docs',
           items: [
-            {label: 'Apps', to: '/?type=app'},
-            {label: 'Themes', to: '/?type=theme'},
+            {label: 'Apps', to: '/apps'},
+            {label: 'Themes', to: '/themes'},
           ],
         },
         {
           title: 'InStijl',
           items: [
-            {label: 'Website', href: 'https://instijl.io'},
-            {label: 'Contact', href: 'mailto:support@instijl.io'},
+            {label: 'Website', href: 'https://instijlmedia.nl'},
+            {label: 'Contact', href: 'mailto:support@instijlmedia.nl'},
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} InStijl.`,
+      copyright: `Copyright © ${new Date().getFullYear()} InStijl Media.`,
     },
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      theme: prismThemes.oneLight,
+      darkTheme: prismThemes.oneDark,
     },
   } satisfies Preset.ThemeConfig,
 };

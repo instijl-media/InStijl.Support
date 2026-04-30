@@ -1,40 +1,90 @@
 .bar {
-  display: grid;
-  grid-template-columns: minmax(220px, 2fr) repeat(3, minmax(140px, 1fr));
-  gap: 0.75rem;
-  align-items: end;
-  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+  padding: 1rem 1.1rem;
+  background: var(--instijl-card-bg);
+  border: 1px solid var(--instijl-card-border);
+  border-radius: 14px;
 }
 
 .search {
   width: 100%;
-  padding: 0.6rem 0.85rem;
+  padding: 0.7rem 0.95rem;
   border: 1px solid var(--instijl-card-border);
-  border-radius: 8px;
-  background: var(--instijl-card-bg);
+  border-radius: 10px;
+  background: var(--ifm-background-color);
   color: inherit;
   font: inherit;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
 }
 
-.field {
+.search:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ifm-color-primary) 25%, transparent);
+}
+
+.group {
   display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  font-size: 0.8rem;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+
+.legend {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--instijl-muted);
+  min-width: 5rem;
 }
 
-.field select {
-  padding: 0.55rem 0.75rem;
-  border: 1px solid var(--instijl-card-border);
-  border-radius: 8px;
-  background: var(--instijl-card-bg);
-  color: inherit;
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chip {
+  appearance: none;
+  cursor: pointer;
+  padding: 0.4rem 0.85rem;
   font: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ifm-font-color-base);
+  background: var(--ifm-background-color);
+  border: 1px solid var(--instijl-card-border);
+  border-radius: 999px;
+  transition: background 120ms ease, color 120ms ease, border-color 120ms ease, transform 120ms ease;
 }
 
-@media (max-width: 768px) {
-  .bar {
-    grid-template-columns: 1fr;
+.chip:hover {
+  border-color: color-mix(in srgb, var(--ifm-color-primary) 50%, var(--instijl-card-border));
+  background: color-mix(in srgb, var(--ifm-color-primary) 8%, transparent);
+}
+
+.chip:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ifm-color-primary) 30%, transparent);
+}
+
+.chipActive {
+  color: #fff;
+  background: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+}
+
+.chipActive:hover {
+  background: var(--ifm-color-primary-darker);
+  border-color: var(--ifm-color-primary-darker);
+}
+
+@media (max-width: 640px) {
+  .legend {
+    min-width: 100%;
   }
 }

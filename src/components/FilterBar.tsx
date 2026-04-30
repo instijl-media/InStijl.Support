@@ -1,19 +1,18 @@
 import React from 'react';
+import clsx from 'clsx';
 import {translate} from '@docusaurus/Translate';
-import type {ProductPlatform, ProductStatus, ProductType} from '@site/plugins/products-data';
+import type {ProductPlatform} from '@site/plugins/products-data';
 import styles from './FilterBar.module.css';
 
+export type PlatformFilter = ProductPlatform | 'all';
+
 export interface ProductFilters {
-  platform: ProductPlatform | 'all';
-  type: ProductType | 'all';
-  status: ProductStatus | 'all';
+  platform: PlatformFilter;
   query: string;
 }
 
 export const DEFAULT_FILTERS: ProductFilters = {
   platform: 'all',
-  type: 'all',
-  status: 'all',
   query: '',
 };
 
@@ -22,9 +21,47 @@ interface Props {
   onChange: (next: ProductFilters) => void;
 }
 
+interface ChipOption<V extends string> {
+  value: V;
+  label: string;
+}
+
+interface ChipGroupProps<V extends string> {
+  legend: string;
+  value: V;
+  options: ChipOption<V>[];
+  onSelect: (next: V) => void;
+}
+
+function ChipGroup<V extends string>({legend, value, options, onSelect}: ChipGroupProps<V>) {
+  return (
+    <div className={styles.group} role="radiogroup" aria-label={legend}>
+      <span className={styles.legend}>{legend}</span>
+      <div className={styles.chips}>
+        {options.map((opt) => {
+          const active = value === opt.value;
+          return (
+            <button
+              key={opt.value}
+              type="button"
+              role="radio"
+              aria-checked={active}
+              className={clsx(styles.chip, active && styles.chipActive)}
+              onClick={() => onSelect(opt.value)}>
+              {opt.label}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export default function FilterBar({filters, onChange}: Props) {
   const set = <K extends keyof ProductFilters>(key: K, value: ProductFilters[K]) =>
     onChange({...filters, [key]: value});
+
+  const allLabel = translate({id: 'filter.all', message: 'All'});
 
   return (
     <div className={styles.bar}>
@@ -33,46 +70,20 @@ export default function FilterBar({filters, onChange}: Props) {
         type="search"
         value={filters.query}
         onChange={(e) => set('query', e.target.value)}
-        placeholder={translate({id: 'filter.searchPlaceholder', message: 'Search apps & themes…'})}
-        aria-label={translate({id: 'filter.searchPlaceholder', message: 'Search apps & themes…'})}
+        placeholder={translate({id: 'filter.searchPlaceholder', message: 'Search…'})}
+        aria-label={translate({id: 'filter.searchPlaceholder', message: 'Search…'})}
       />
 
-      <label className={styles.field}>
-        <span>{translate({id: 'filter.platform', message: 'Platform'})}</span>
-        <select
-          value={filters.platform}
-          onChange={(e) => set('platform', e.target.value as ProductFilters['platform'])}>
-          <option value="all">{translate({id: 'filter.all', message: 'All'})}</option>
-          <option value="lightspeed">Lightspeed</option>
-          <option value="shopify">Shopify</option>
-          <option value="both">Lightspeed + Shopify</option>
-        </select>
-      </label>
-
-      <label className={styles.field}>
-        <span>{translate({id: 'filter.type', message: 'Type'})}</span>
-        <select
-          value={filters.type}
-          onChange={(e) => set('type', e.target.value as ProductFilters['type'])}>
-          <option value="all">{translate({id: 'filter.all', message: 'All'})}</option>
-          <option value="app">{translate({id: 'type.app', message: 'App'})}</option>
-          <option value="theme">{translate({id: 'type.theme', message: 'Theme'})}</option>
-        </select>
-      </label>
-
-      <label className={styles.field}>
-        <span>{translate({id: 'filter.status', message: 'Status'})}</span>
-        <select
-          value={filters.status}
-          onChange={(e) => set('status', e.target.value as ProductFilters['status'])}>
-          <option value="all">{translate({id: 'filter.all', message: 'All'})}</option>
-          <option value="active">{translate({id: 'status.active', message: 'Active'})}</option>
-          <option value="beta">{translate({id: 'status.beta', message: 'Beta'})}</option>
-          <option value="deprecated">
-            {translate({id: 'status.deprecated', message: 'Deprecated'})}
-          </option>
-        </select>
-      </label>
+      <ChipGroup<PlatformFilter>
+        legend={translate({id: 'filter.platform', message: 'Platform'})}
+        value={filters.platform}
+        onSelect={(v) => set('platform', v)}
+        options={[
+          {value: 'all', label: allLabel},
+          {value: 'lightspeed', label: 'Lightspeed'},
+          {value: 'shopify', label: 'Shopify'},
+        ]}
+      />
     </div>
   );
 }

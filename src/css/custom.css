@@ -1,45 +1,248 @@
 /**
- * InStijl Support — brand tokens.
- *
- * Replace the primary palette with brand-supplied hex values once available.
+ * InStijl Support — modern theme tokens.
+ * Inspired by Linear / Vercel / Stripe docs aesthetics.
  */
 
 :root {
-  --ifm-color-primary: #3a5bdc;
-  --ifm-color-primary-dark: #2a4cd0;
-  --ifm-color-primary-darker: #2748c4;
-  --ifm-color-primary-darkest: #203ba1;
-  --ifm-color-primary-light: #5573e2;
-  --ifm-color-primary-lighter: #6580e5;
-  --ifm-color-primary-lightest: #92a6ee;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  /* Brand — InStijl orange */
+  --ifm-color-primary: #f7941e;
+  --ifm-color-primary-dark: #ea8408;
+  --ifm-color-primary-darker: #dd7c08;
+  --ifm-color-primary-darkest: #b66606;
+  --ifm-color-primary-light: #f9a443;
+  --ifm-color-primary-lighter: #fab05a;
+  --ifm-color-primary-lightest: #fdcd92;
 
-  --instijl-radius: 12px;
-  --instijl-card-border: rgba(0, 0, 0, 0.08);
+  /* Typography */
+  --ifm-font-family-base:
+    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --ifm-font-family-monospace:
+    ui-monospace, 'JetBrains Mono', SFMono-Regular, 'SF Mono', Menlo, Consolas,
+    monospace;
+  --ifm-heading-font-weight: 600;
+  --ifm-font-weight-semibold: 600;
+  --ifm-line-height-base: 1.65;
+  --ifm-h1-font-size: 2.25rem;
+  --ifm-h2-font-size: 1.625rem;
+  --ifm-h3-font-size: 1.25rem;
+  --ifm-code-font-size: 90%;
+
+  /* Surfaces */
+  --ifm-background-color: #ffffff;
+  --ifm-background-surface-color: #f5f6fa;
+  --ifm-color-content: #303030;
+  --ifm-color-content-secondary: #5a5a5a;
+
+  /* Neutrals */
+  --instijl-bg: #ffffff;
+  --instijl-bg-subtle: #f5f6fa;
+  --instijl-bg-muted: #eceef5;
+  --instijl-border: #e5e7ec;
+  --instijl-border-strong: #d3d5dd;
+  --instijl-fg: #303030;
+  --instijl-fg-muted: #6b6b6b;
+  --instijl-fg-subtle: #9a9a9a;
+
+  /* Cards & shadows */
+  --instijl-radius: 14px;
+  --instijl-radius-lg: 20px;
   --instijl-card-bg: #ffffff;
-  --instijl-muted: #6b7280;
+  --instijl-card-border: #e5e7ec;
+  --instijl-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --instijl-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -12px rgba(15, 23, 42, 0.12);
+  --instijl-shadow-lg:
+    0 1px 2px rgba(15, 23, 42, 0.04), 0 24px 48px -24px rgba(15, 23, 42, 0.18);
 
-  --instijl-platform-lightspeed: #ff6a13;
-  --instijl-platform-shopify: #95bf47;
+  /* Semantic */
+  --instijl-platform-lightspeed: #f97316;
+  --instijl-platform-shopify: #16a34a;
   --instijl-platform-both: #6366f1;
 
-  --instijl-status-active: #16a34a;
-  --instijl-status-beta: #ca8a04;
-  --instijl-status-deprecated: #b91c1c;
+  --instijl-status-active: #10b981;
+  --instijl-status-beta: #f59e0b;
+  --instijl-status-deprecated: #ef4444;
+
+  --docusaurus-highlighted-code-line-bg: rgba(247, 148, 30, 0.16);
+
+  /* Layout */
+  --ifm-navbar-height: 64px;
+  --ifm-spacing-horizontal: 1.5rem;
+  --ifm-navbar-background-color: rgba(255, 255, 255, 0.78);
+  --ifm-navbar-shadow: 0 1px 0 var(--instijl-border);
+  --ifm-toc-border-color: var(--instijl-border);
+  --ifm-hr-background-color: var(--instijl-border);
+  --ifm-table-border-color: var(--instijl-border);
+  --ifm-blockquote-border-left-width: 3px;
+  --ifm-blockquote-border-color: var(--ifm-color-primary-lighter);
+  --ifm-pagination-nav-border-radius: 12px;
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary: #8aa3ff;
-  --ifm-color-primary-dark: #6e8bff;
-  --ifm-color-primary-darker: #607fff;
-  --ifm-color-primary-darkest: #3859ff;
-  --ifm-color-primary-light: #a6bbff;
-  --ifm-color-primary-lighter: #b3c5ff;
-  --ifm-color-primary-lightest: #d0dcff;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #ffae4a;
+  --ifm-color-primary-dark: #fb9d2a;
+  --ifm-color-primary-darker: #f59320;
+  --ifm-color-primary-darkest: #c97208;
+  --ifm-color-primary-light: #ffbd6b;
+  --ifm-color-primary-lighter: #ffc886;
+  --ifm-color-primary-lightest: #ffdcb1;
 
-  --instijl-card-border: rgba(255, 255, 255, 0.1);
-  --instijl-card-bg: #1b1b1d;
-  --instijl-muted: #9ca3af;
+  --ifm-background-color: #1a1c22;
+  --ifm-background-surface-color: #1e2028;
+  --ifm-color-content: #e6e8ec;
+  --ifm-color-content-secondary: #9ba0ae;
+
+  --instijl-bg: #1a1c22;
+  --instijl-bg-subtle: #1e2028;
+  --instijl-bg-muted: #2e3140;
+  --instijl-border: #333748;
+  --instijl-border-strong: #474c62;
+  --instijl-fg: #e6e8ec;
+  --instijl-fg-muted: #9ba0ae;
+  --instijl-fg-subtle: #686d80;
+
+  --instijl-card-bg: #252830;
+  --instijl-card-border: #333748;
+  --instijl-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 8px 24px -12px rgba(0, 0, 0, 0.35);
+  --instijl-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --instijl-shadow-lg: 0 24px 48px -24px rgba(0, 0, 0, 0.55);
+
+  --docusaurus-highlighted-code-line-bg: rgba(255, 174, 74, 0.14);
+
+  --ifm-navbar-background-color: rgba(26, 28, 34, 0.88);
+  --ifm-navbar-shadow: 0 1px 0 var(--instijl-border);
+}
+
+/* ---------- Global polish ---------- */
+
+html {
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--instijl-bg);
+}
+
+@supports (font-variation-settings: normal) {
+  :root {
+    --ifm-font-family-base:
+      'Inter var', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+      'Helvetica Neue', Arial, sans-serif;
+  }
+}
+
+/* Glassy sticky navbar.
+ * IMPORTANT: backdrop-filter must NOT be on .navbar directly because it makes
+ * .navbar a containing block for position:fixed elements (CSS spec), which breaks
+ * the .navbar-sidebar mobile overlay. We use a ::before pseudo-element instead.
+ */
+.navbar {
+  position: relative;
+  background: transparent !important;
+  border-bottom: 1px solid var(--instijl-border);
+  box-shadow: none;
+}
+
+.navbar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--ifm-navbar-background-color);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+}
+
+.navbar__title {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.navbar__link {
+  font-weight: 500;
+  color: var(--instijl-fg-muted);
+  transition: color 0.15s ease;
+}
+.navbar__link:hover,
+.navbar__link--active {
+  color: var(--instijl-fg);
+}
+
+/* Headings: tighter tracking */
+h1, h2, h3, h4 {
+  letter-spacing: -0.02em;
+}
+
+/* Inline code */
+code {
+  border: 1px solid var(--instijl-border);
+  background: var(--instijl-bg-muted);
+  border-radius: 6px;
+  padding: 0.1rem 0.35rem;
+  font-size: 0.85em;
+}
+
+/* Code blocks */
+.theme-code-block {
+  border-radius: 12px !important;
+  border: 1px solid var(--instijl-border);
+}
+
+/* Buttons */
+.button--primary {
+  background: var(--ifm-color-primary);
+  border: 1px solid var(--ifm-color-primary-dark);
+  border-radius: 10px;
+  font-weight: 500;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, var(--instijl-shadow-sm);
+  transition: transform 0.1s ease, box-shadow 0.15s ease;
+}
+.button--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--instijl-shadow);
+}
+
+/* Sidebar */
+.menu {
+  font-size: 0.9rem;
+}
+.menu__link {
+  border-radius: 8px;
+  font-weight: 500;
+  color: var(--instijl-fg-muted);
+}
+.menu__link:hover {
+  background: var(--instijl-bg-muted);
+  color: var(--instijl-fg);
+}
+.menu__link--active {
+  background: color-mix(in srgb, var(--ifm-color-primary) 12%, transparent);
+  color: var(--ifm-color-primary);
+}
+
+/* Footer */
+.footer--dark {
+  background: #141619;
+  border-top: 1px solid #333748;
+}
+
+/* Mobile: increase horizontal breathing room */
+@media (max-width: 480px) {
+  :root {
+    --ifm-spacing-horizontal: 1.1rem;
+  }
+}
+
+/* Pagination cards */
+.pagination-nav__link {
+  border-radius: 12px;
+  border: 1px solid var(--instijl-border);
+  transition: border-color 0.15s ease, transform 0.1s ease;
+}
+.pagination-nav__link:hover {
+  border-color: var(--ifm-color-primary-lighter);
+  transform: translateY(-1px);
 }

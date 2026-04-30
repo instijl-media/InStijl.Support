@@ -1,70 +1,85 @@
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding: 1.25rem;
   background: var(--instijl-card-bg);
   border: 1px solid var(--instijl-card-border);
-  border-radius: var(--instijl-radius);
+  border-radius: var(--instijl-radius-lg);
   text-decoration: none !important;
-  color: inherit;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  color: inherit !important;
+  overflow: hidden;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px -16px rgba(0, 0, 0, 0.25);
-  border-color: var(--ifm-color-primary-lighter);
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--ifm-color-primary) 45%, var(--instijl-card-border));
+  box-shadow: 0 16px 40px -16px rgba(247, 148, 30, 0.30);
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+.imageWrap {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid var(--instijl-card-border);
 }
 
-.logo {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  object-fit: contain;
-  background: rgba(0, 0, 0, 0.04);
-  padding: 4px;
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-.titleWrap {
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+.body {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.6rem;
+  padding: 1.5rem 1.25rem 1.4rem;
 }
 
 .title {
   margin: 0;
-  font-size: 1.05rem;
-  line-height: 1.2;
-}
-
-.type {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--instijl-muted);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--instijl-fg);
 }
 
 .summary {
   margin: 0;
-  color: var(--instijl-muted);
-  font-size: 0.9rem;
+  color: var(--instijl-fg-muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: auto;
+.cta {
+  margin-top: 0.4rem;
+  display: inline-flex;
   align-items: center;
+  gap: 0.4rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
 }
 
-.price {
-  font-size: 0.8rem;
-  color: var(--instijl-muted);
+.cta span {
+  transition: transform 160ms ease;
+}
+
+.card:hover .cta span {
+  transform: translateX(4px);
 }
