@@ -13,11 +13,27 @@
  */
 
 import { visit } from 'unist-util-visit';
+import matter from 'gray-matter';
 
 /** @type {import('unified').Plugin} */
 export default function remarkEmbedShortcode() {
   return (tree, vfile) => {
-    const embeds = vfile.data?.frontmatter?.embeds;
+    // Try vfile.data.frontMatter (Docusaurus) first, then parse from yaml AST node
+    let embeds = vfile.data?.frontMatter?.embeds;
+
+    if (!embeds) {
+      // Parse the yaml frontmatter node directly from the AST
+      for (const node of tree.children ?? []) {
+        if (node.type === 'yaml') {
+          try {
+            const fm = matter('---\n' + node.value + '\n---').data;
+            embeds = fm?.embeds;
+          } catch {}
+          break;
+        }
+      }
+    }
+
     if (!Array.isArray(embeds) || embeds.length === 0) return;
 
     /** @type {Record<string, string>} */
