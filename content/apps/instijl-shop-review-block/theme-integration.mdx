@@ -1,0 +1,135 @@
+---
+title: Theme integration
+nl_title: Thema integratie
+sidebar_position: 4
+nl_body: >-
+  ## InStijl Shop Review Blokken toevoegen
+
+
+  Volg de volgende stappen om de widgets van Shop Review Widget toe te voegen
+  aan jouw Shopify 2.0 thema:
+
+
+  1. Ga naar het thema waarin je de Review Widgets wilt toevoegen, en klik op
+  "Customize"
+
+  2. Je komt nu in het scherm met thema-instellingen.
+
+  3. Ga naar een sectie dat 'App Blocks' ondersteund en klik op 'Add block'
+
+  4. Selecteer een van de Shop Review Widget blokken.
+
+
+  De widget is nu toegevoegd! Je kunt de widget nu naar wens instellen.
+
+
+  ## InStijl Shop Review Blokken configureren
+
+
+  Je kunt de toegevoegde app blokken geheel naar wens aanpassen. Zorg er eerst
+  voor dat je een van onze App Blokken in je thema hebt toegevoegd.
+
+
+  1. Selecteer de App Blok die je wilt configureren in de thema-editor.
+
+  2. Er verschijnen een aantal opties. Pas de opties, kleuren en andere
+  instellingen aan, zodat het past binnen jouw eigen huisstijl!
+
+  3. Klik op 'Save' wanneer je het gewenste resultaat hebt bereikt om de
+  wijzigingen te publiceren.
+
+
+  ## Geavanceerde integratie
+
+
+  Het is mogelijk om via de thema-code review data op te halen. Op die manier
+  kun je, indien je enige programmeer kennis hebt, zelf je eigen widget samen
+  stellen.
+
+
+  Hieronder vindt je een overzicht met de liquid-variabelen die je kunt
+  gebruiken.
+
+
+  ```
+
+  {% liquid
+    assign shop_reviews = shop.metafields.ism.shop_reviews.value
+    assign total_score = shop_reviews.total_score
+
+    assign total_reviews = shop_reviews.total_reviews
+
+  %}
+
+
+  {% for review in shop_reviews.reviews limit: 10 %}
+    {% liquid
+      assign review_date = review.date | date: "%d-%m-%Y"
+
+      assign review_score = review.score
+
+      assign review_name = review.name
+
+      assign review_content = review.content
+
+      assign review_title = review.title # can be null
+
+      assign review_location = review.location # can be null
+
+      assign review_response_content = review.response_content # can be null
+    %}
+  {% endfor %}
+
+  ```
+
+
+  **Let op:** kennis van HTML, CSS, Liquid en enventueel JavaScript is vereist.
+  InStijl Media kan geen support geven op zelfgemaakte review widgets.
+---
+## Adding InStijl Shop Review Blocks
+
+Follow the following steps to add Shop Review Widget widgets to your Shopify 2.0 theme:
+
+1. Go to the theme in which you want to add the Review Widgets, and click "Customize."
+2. You will now get to the theme settings screen.
+3. Go to a section that supports "App Blocks" and click "Add block
+4. Select one of the Shop Review Widget blocks.
+
+The widget has now been added! You can now configure the widget to your liking.
+
+## Configuring InStijl Shop Review Blocks
+
+You can customize the added app blocks entirely to your liking. First, make sure you have added one of our App Blocks in your theme.
+
+1. Select the App Block you want to configure in the theme editor.
+2. A number of options will appear. Customize the options, colors and other settings to fit your own style!
+3. When you have reached the desired result, click 'Save' to publish the changes.
+
+## Advanced integration
+
+It is possible to retrieve review data through the theme code. That way, if you have some programming knowledge, you can create your own widget.
+
+Below is an overview of the liquid variables you can use.
+
+```
+{% liquid
+  assign shop_reviews = shop.metafields.ism.shop_reviews.value
+  assign total_score = shop_reviews.total_score
+  assign total_reviews = shop_reviews.total_reviews
+%}
+
+{% for review in shop_reviews.reviews limit: 10 %}
+  {% liquid
+    assign review_date = review.date | date: "%d-%m-%Y"
+    assign review_score = review.score
+    assign review_name = review.name
+    assign review_content = review.content
+    assign review_title = review.title # can be null
+    assign review_location = review.location # can be null
+    assign review_response_content = review.response_content # can be null
+  %}
+{% endfor %}
+```
+
+Please note that knowledge of HTML, CSS, Liquid and possibly JavaScript is required. InStijl Media cannot provide support on selfmade review widgets.
+
