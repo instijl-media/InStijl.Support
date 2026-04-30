@@ -46,22 +46,34 @@ content:
 
   # ═══════════════════════════════════════════════════════════════════════════
   # APPS
+  # To add a new app: create the folder + index.mdx manually, then add a
+  # `file` entry here pointing to it. Subpages need no changes here.
   # ═══════════════════════════════════════════════════════════════════════════
   - name: apps
     label: Apps
     type: group
     items:
 
-      # All overviews in one collection — add a new app by clicking "Add entry"
-      - name: app_overviews
-        label: Overviews
-        type: collection
-        path: content/apps
-        match: "*/index.mdx"
-        filename: "{title}/index.mdx"
+      # ── Overviews (one file entry per app) ────────────────────────────────
+      - name: app_ai_overview
+        label: "InStijl AI"
+        type: file
+        path: content/apps/InStijlAI/index.mdx
         fields: *overview-fields
 
-      # All subpages in one collection — fill in "folder" to scope the file
+      - name: app_postcode_check_overview
+        label: "Postcode Check"
+        type: file
+        path: content/apps/instijl-postcode-check/index.mdx
+        fields: *overview-fields
+
+      - name: app_shop_review_block_overview
+        label: "Shop Review Block"
+        type: file
+        path: content/apps/instijl-shop-review-block/index.mdx
+        fields: *overview-fields
+
+      # ── Subpages (all apps, add freely) ───────────────────────────────────
       - name: app_subpages
         label: Subpages
         type: collection
@@ -73,22 +85,28 @@ content:
 
   # ═══════════════════════════════════════════════════════════════════════════
   # THEMES
+  # To add a new theme: create the folder + index.mdx manually, then add a
+  # `file` entry here pointing to it. Subpages need no changes here.
   # ═══════════════════════════════════════════════════════════════════════════
   - name: themes
     label: Themes
     type: group
     items:
 
-      # All overviews in one collection — add a new theme by clicking "Add entry"
-      - name: theme_overviews
-        label: Overviews
-        type: collection
-        path: content/themes
-        match: "*/index.mdx"
-        filename: "{title}/index.mdx"
+      # ── Overviews (one file entry per theme) ──────────────────────────────
+      - name: theme_inspire_overview
+        label: "Inspire"
+        type: file
+        path: content/themes/inspire/index.mdx
         fields: *overview-fields
 
-      # All subpages in one collection — fill in "folder" to scope the file
+      - name: theme_unity_overview
+        label: "Unity"
+        type: file
+        path: content/themes/unity/index.mdx
+        fields: *overview-fields
+
+      # ── Subpages (all themes, add freely) ─────────────────────────────────
       - name: theme_subpages
         label: Subpages
         type: collection
