@@ -223,6 +223,13 @@ code {
   color: var(--ifm-color-primary);
 }
 
+/* Indent nested subpages relative to their parent category */
+.menu__list .menu__list {
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--instijl-border);
+  margin-left: 0.5rem;
+}
+
 /* Footer */
 .footer--dark {
   background: #141619;
