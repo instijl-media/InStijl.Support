@@ -17,13 +17,13 @@ content:
         label: AI
         type: group
         items:
-          - name: app_ai_en
-            label: "Overview (EN)"
+          - name: app_ai_overview
+            label: Overview
             type: file
             path: content/apps/ai/index.mdx
             fields:
-              - { name: title,    label: Title,    type: string, required: true }
-              - { name: type,     label: Type,     type: string, hidden: true }
+              - { name: title,    label: "Title (EN)",    type: string, required: true }
+              - { name: type,     label: Type,            type: string, hidden: true }
               - name: platform
                 label: Platform
                 type: select
@@ -40,15 +40,15 @@ content:
                     - { name: active,     label: Active }
                     - { name: beta,       label: Beta }
                     - { name: deprecated, label: Deprecated }
-              - { name: summary, label: Summary, type: text, required: true }
-              - { name: logo,    label: Logo,    type: image }
-              - { name: order,   label: "Sort order", type: number }
+              - { name: summary, label: "Summary (EN)", type: text, required: true }
+              - { name: logo,    label: Logo,           type: image }
+              - { name: order,   label: "Sort order",   type: number }
               - name: pricing
                 label: Pricing
                 type: object
                 fields:
-                  - { name: plan,     label: Plan,     type: string }
-                  - { name: price,    label: Price,    type: string }
+                  - { name: plan,  label: Plan,  type: string }
+                  - { name: price, label: Price, type: string }
                   - name: interval
                     label: Interval
                     type: select
@@ -72,9 +72,16 @@ content:
                 fields:
                   - { name: label, label: Label, type: string }
                   - { name: url,   label: URL,   type: string }
-              - { name: body, label: Content, type: rich-text }
+              - { name: body, label: "Content (EN)", type: rich-text }
+              - name: nl
+                label: "🇳🇱 Dutch translation"
+                type: object
+                fields:
+                  - { name: title,   label: "Title (NL)",   type: string, required: true }
+                  - { name: summary, label: "Summary (NL)", type: text,   required: true }
+                  - { name: body,    label: "Content (NL)", type: rich-text }
 
-          - name: app_ai_pages_en
+          - name: app_ai_subpages_en
             label: "Subpages (EN)"
             type: collection
             path: content/apps/ai
@@ -86,16 +93,7 @@ content:
               - { name: sidebar_position, label: "Sidebar position", type: number }
               - { name: body,             label: Content,            type: rich-text }
 
-          - name: app_ai_nl
-            label: "Overview (NL)"
-            type: file
-            path: i18n/nl/docusaurus-plugin-content-docs-apps/current/ai/index.mdx
-            fields:
-              - { name: title,   label: Title,   type: string, required: true }
-              - { name: summary, label: Summary, type: text,   required: true }
-              - { name: body,    label: Content, type: rich-text }
-
-          - name: app_ai_pages_nl
+          - name: app_ai_subpages_nl
             label: "Subpages (NL)"
             type: collection
             path: i18n/nl/docusaurus-plugin-content-docs-apps/current/ai
@@ -111,13 +109,13 @@ content:
         label: Sync
         type: group
         items:
-          - name: app_sync_en
-            label: "Overview (EN)"
+          - name: app_sync_overview
+            label: Overview
             type: file
             path: content/apps/sync/index.mdx
             fields:
-              - { name: title,    label: Title,    type: string, required: true }
-              - { name: type,     label: Type,     type: string, hidden: true }
+              - { name: title,    label: "Title (EN)",    type: string, required: true }
+              - { name: type,     label: Type,            type: string, hidden: true }
               - name: platform
                 label: Platform
                 type: select
@@ -134,15 +132,15 @@ content:
                     - { name: active,     label: Active }
                     - { name: beta,       label: Beta }
                     - { name: deprecated, label: Deprecated }
-              - { name: summary, label: Summary, type: text, required: true }
-              - { name: logo,    label: Logo,    type: image }
-              - { name: order,   label: "Sort order", type: number }
+              - { name: summary, label: "Summary (EN)", type: text, required: true }
+              - { name: logo,    label: Logo,           type: image }
+              - { name: order,   label: "Sort order",   type: number }
               - name: pricing
                 label: Pricing
                 type: object
                 fields:
-                  - { name: plan,     label: Plan,  type: string }
-                  - { name: price,    label: Price, type: string }
+                  - { name: plan,  label: Plan,  type: string }
+                  - { name: price, label: Price, type: string }
                   - name: interval
                     label: Interval
                     type: select
@@ -166,9 +164,16 @@ content:
                 fields:
                   - { name: label, label: Label, type: string }
                   - { name: url,   label: URL,   type: string }
-              - { name: body, label: Content, type: rich-text }
+              - { name: body, label: "Content (EN)", type: rich-text }
+              - name: nl
+                label: "🇳🇱 Dutch translation"
+                type: object
+                fields:
+                  - { name: title,   label: "Title (NL)",   type: string, required: true }
+                  - { name: summary, label: "Summary (NL)", type: text,   required: true }
+                  - { name: body,    label: "Content (NL)", type: rich-text }
 
-          - name: app_sync_pages_en
+          - name: app_sync_subpages_en
             label: "Subpages (EN)"
             type: collection
             path: content/apps/sync
@@ -180,16 +185,7 @@ content:
               - { name: sidebar_position, label: "Sidebar position", type: number }
               - { name: body,             label: Content,            type: rich-text }
 
-          - name: app_sync_nl
-            label: "Overview (NL)"
-            type: file
-            path: i18n/nl/docusaurus-plugin-content-docs-apps/current/sync/index.mdx
-            fields:
-              - { name: title,   label: Title,   type: string, required: true }
-              - { name: summary, label: Summary, type: text,   required: true }
-              - { name: body,    label: Content, type: rich-text }
-
-          - name: app_sync_pages_nl
+          - name: app_sync_subpages_nl
             label: "Subpages (NL)"
             type: collection
             path: i18n/nl/docusaurus-plugin-content-docs-apps/current/sync
@@ -213,13 +209,13 @@ content:
         label: Inspire
         type: group
         items:
-          - name: theme_inspire_en
-            label: "Overview (EN)"
+          - name: theme_inspire_overview
+            label: Overview
             type: file
             path: content/themes/inspire/index.mdx
             fields:
-              - { name: title,    label: Title,    type: string, required: true }
-              - { name: type,     label: Type,     type: string, hidden: true }
+              - { name: title,    label: "Title (EN)",    type: string, required: true }
+              - { name: type,     label: Type,            type: string, hidden: true }
               - name: platform
                 label: Platform
                 type: select
@@ -236,15 +232,15 @@ content:
                     - { name: active,     label: Active }
                     - { name: beta,       label: Beta }
                     - { name: deprecated, label: Deprecated }
-              - { name: summary, label: Summary, type: text, required: true }
-              - { name: logo,    label: Logo,    type: image }
-              - { name: order,   label: "Sort order", type: number }
+              - { name: summary, label: "Summary (EN)", type: text, required: true }
+              - { name: logo,    label: Logo,           type: image }
+              - { name: order,   label: "Sort order",   type: number }
               - name: pricing
                 label: Pricing
                 type: object
                 fields:
-                  - { name: plan,     label: Plan,  type: string }
-                  - { name: price,    label: Price, type: string }
+                  - { name: plan,  label: Plan,  type: string }
+                  - { name: price, label: Price, type: string }
                   - name: interval
                     label: Interval
                     type: select
@@ -268,9 +264,16 @@ content:
                 fields:
                   - { name: label, label: Label, type: string }
                   - { name: url,   label: URL,   type: string }
-              - { name: body, label: Content, type: rich-text }
+              - { name: body, label: "Content (EN)", type: rich-text }
+              - name: nl
+                label: "🇳🇱 Dutch translation"
+                type: object
+                fields:
+                  - { name: title,   label: "Title (NL)",   type: string, required: true }
+                  - { name: summary, label: "Summary (NL)", type: text,   required: true }
+                  - { name: body,    label: "Content (NL)", type: rich-text }
 
-          - name: theme_inspire_pages_en
+          - name: theme_inspire_subpages_en
             label: "Subpages (EN)"
             type: collection
             path: content/themes/inspire
@@ -282,113 +285,10 @@ content:
               - { name: sidebar_position, label: "Sidebar position", type: number }
               - { name: body,             label: Content,            type: rich-text }
 
-          - name: theme_inspire_nl
-            label: "Overview (NL)"
-            type: file
-            path: i18n/nl/docusaurus-plugin-content-docs-themes/current/inspire/index.mdx
-            fields:
-              - { name: title,   label: Title,   type: string, required: true }
-              - { name: summary, label: Summary, type: text,   required: true }
-              - { name: body,    label: Content, type: rich-text }
-
-          - name: theme_inspire_pages_nl
+          - name: theme_inspire_subpages_nl
             label: "Subpages (NL)"
             type: collection
             path: i18n/nl/docusaurus-plugin-content-docs-themes/current/inspire
-            match: "*.mdx"
-            exclude: ["index.mdx"]
-            filename: "{title}.mdx"
-            fields:
-              - { name: title, label: Title,   type: string, required: true }
-              - { name: body,  label: Content, type: rich-text }
-
-      # ── Studio ────────────────────────────────────────────────────────────
-      - name: theme_studio
-        label: Studio
-        type: group
-        items:
-          - name: theme_studio_en
-            label: "Overview (EN)"
-            type: file
-            path: content/themes/studio/index.mdx
-            fields:
-              - { name: title,    label: Title,    type: string, required: true }
-              - { name: type,     label: Type,     type: string, hidden: true }
-              - name: platform
-                label: Platform
-                type: select
-                options:
-                  values:
-                    - { name: lightspeed, label: Lightspeed }
-                    - { name: shopify,    label: Shopify }
-                    - { name: both,       label: Both }
-              - name: status
-                label: Status
-                type: select
-                options:
-                  values:
-                    - { name: active,     label: Active }
-                    - { name: beta,       label: Beta }
-                    - { name: deprecated, label: Deprecated }
-              - { name: summary, label: Summary, type: text, required: true }
-              - { name: logo,    label: Logo,    type: image }
-              - { name: order,   label: "Sort order", type: number }
-              - name: pricing
-                label: Pricing
-                type: object
-                fields:
-                  - { name: plan,     label: Plan,  type: string }
-                  - { name: price,    label: Price, type: string }
-                  - name: interval
-                    label: Interval
-                    type: select
-                    options:
-                      values:
-                        - { name: month,    label: Per month }
-                        - { name: year,     label: Per year }
-                        - { name: one-time, label: One-time }
-                  - name: currency
-                    label: Currency
-                    type: select
-                    options:
-                      values:
-                        - { name: EUR, label: EUR }
-                        - { name: USD, label: USD }
-                        - { name: GBP, label: GBP }
-              - name: links
-                label: "External links"
-                type: object
-                list: true
-                fields:
-                  - { name: label, label: Label, type: string }
-                  - { name: url,   label: URL,   type: string }
-              - { name: body, label: Content, type: rich-text }
-
-          - name: theme_studio_pages_en
-            label: "Subpages (EN)"
-            type: collection
-            path: content/themes/studio
-            match: "*.mdx"
-            exclude: ["index.mdx"]
-            filename: "{title}.mdx"
-            fields:
-              - { name: title,            label: Title,             type: string, required: true }
-              - { name: sidebar_position, label: "Sidebar position", type: number }
-              - { name: body,             label: Content,            type: rich-text }
-
-          - name: theme_studio_nl
-            label: "Overview (NL)"
-            type: file
-            path: i18n/nl/docusaurus-plugin-content-docs-themes/current/studio/index.mdx
-            fields:
-              - { name: title,   label: Title,   type: string, required: true }
-              - { name: summary, label: Summary, type: text,   required: true }
-              - { name: body,    label: Content, type: rich-text }
-
-          - name: theme_studio_pages_nl
-            label: "Subpages (NL)"
-            type: collection
-            path: i18n/nl/docusaurus-plugin-content-docs-themes/current/studio
             match: "*.mdx"
             exclude: ["index.mdx"]
             filename: "{title}.mdx"
@@ -401,13 +301,13 @@ content:
         label: Unity
         type: group
         items:
-          - name: theme_unity_en
-            label: "Overview (EN)"
+          - name: theme_unity_overview
+            label: Overview
             type: file
             path: content/themes/unity/index.mdx
             fields:
-              - { name: title,    label: Title,    type: string, required: true }
-              - { name: type,     label: Type,     type: string, hidden: true }
+              - { name: title,    label: "Title (EN)",    type: string, required: true }
+              - { name: type,     label: Type,            type: string, hidden: true }
               - name: platform
                 label: Platform
                 type: select
@@ -424,15 +324,15 @@ content:
                     - { name: active,     label: Active }
                     - { name: beta,       label: Beta }
                     - { name: deprecated, label: Deprecated }
-              - { name: summary, label: Summary, type: text, required: true }
-              - { name: logo,    label: Logo,    type: image }
-              - { name: order,   label: "Sort order", type: number }
+              - { name: summary, label: "Summary (EN)", type: text, required: true }
+              - { name: logo,    label: Logo,           type: image }
+              - { name: order,   label: "Sort order",   type: number }
               - name: pricing
                 label: Pricing
                 type: object
                 fields:
-                  - { name: plan,     label: Plan,  type: string }
-                  - { name: price,    label: Price, type: string }
+                  - { name: plan,  label: Plan,  type: string }
+                  - { name: price, label: Price, type: string }
                   - name: interval
                     label: Interval
                     type: select
@@ -456,9 +356,16 @@ content:
                 fields:
                   - { name: label, label: Label, type: string }
                   - { name: url,   label: URL,   type: string }
-              - { name: body, label: Content, type: rich-text }
+              - { name: body, label: "Content (EN)", type: rich-text }
+              - name: nl
+                label: "🇳🇱 Dutch translation"
+                type: object
+                fields:
+                  - { name: title,   label: "Title (NL)",   type: string, required: true }
+                  - { name: summary, label: "Summary (NL)", type: text,   required: true }
+                  - { name: body,    label: "Content (NL)", type: rich-text }
 
-          - name: theme_unity_pages_en
+          - name: theme_unity_subpages_en
             label: "Subpages (EN)"
             type: collection
             path: content/themes/unity
@@ -470,16 +377,7 @@ content:
               - { name: sidebar_position, label: "Sidebar position", type: number }
               - { name: body,             label: Content,            type: rich-text }
 
-          - name: theme_unity_nl
-            label: "Overview (NL)"
-            type: file
-            path: i18n/nl/docusaurus-plugin-content-docs-themes/current/unity/index.mdx
-            fields:
-              - { name: title,   label: Title,   type: string, required: true }
-              - { name: summary, label: Summary, type: text,   required: true }
-              - { name: body,    label: Content, type: rich-text }
-
-          - name: theme_unity_pages_nl
+          - name: theme_unity_subpages_nl
             label: "Subpages (NL)"
             type: collection
             path: i18n/nl/docusaurus-plugin-content-docs-themes/current/unity

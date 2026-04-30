@@ -5,9 +5,9 @@
   "description": "Documentation site for InStijl apps and themes (Lightspeed & Shopify).",
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "docusaurus start",
-    "start:nl": "docusaurus start --locale nl",
-    "build": "docusaurus build",
+    "start": "node scripts/sync-translations.js && docusaurus start",
+    "start:nl": "node scripts/sync-translations.js && docusaurus start --locale nl",
+    "build": "node scripts/sync-translations.js && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
