@@ -36,7 +36,8 @@ x-overview-fields: &overview-fields
   - { name: nl_body, label: "Content (NL)", type: rich-text }
   - name: embeds
     label: "HTML Embeds"
-    type: list
+    type: object
+    list: true
     fields:
       - { name: id,   label: "Shortcode ID (e.g. video1)", type: string, required: true }
       - { name: html, label: "HTML / embed code",          type: text }
@@ -50,7 +51,8 @@ x-subpage-fields: &subpage-fields
   - { name: nl_body,          label: "Content (NL)",     type: rich-text }
   - name: embeds
     label: "HTML Embeds"
-    type: list
+    type: object
+    list: true
     fields:
       - { name: id,   label: "Shortcode ID (e.g. video1)", type: string, required: true }
       - { name: html, label: "HTML / embed code",          type: text }
