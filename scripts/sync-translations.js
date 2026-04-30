@@ -36,6 +36,30 @@ const PLUGINS = [
 let synced = 0;
 let skipped = 0;
 
+/**
+ * Write a single NL file from a parsed EN file's `nl` frontmatter block.
+ * @param {object} fm       - Full frontmatter of the EN source file
+ * @param {string} nlFile   - Absolute path to write the NL output file
+ * @param {boolean} isIndex - Whether this is a product index (includes summary)
+ */
+function syncFile(fm, nlFile, isIndex) {
+  if (!fm.nl) {
+    skipped++;
+    return;
+  }
+
+  const nl = fm.nl;
+
+  const nlFm = { title: nl.title || fm.title };
+  if (fm.sidebar_position !== undefined) nlFm.sidebar_position = fm.sidebar_position;
+  if (isIndex && nl.summary) nlFm.summary = nl.summary;
+
+  const nlBody = nl.body || '';
+  fs.writeFileSync(nlFile, matter.stringify(nlBody, nlFm), 'utf8');
+  console.log(`  synced → ${path.relative(ROOT, nlFile)}`);
+  synced++;
+}
+
 for (const { enDir, i18nDir } of PLUGINS) {
   if (!fs.existsSync(enDir)) continue;
 
@@ -44,35 +68,22 @@ for (const { enDir, i18nDir } of PLUGINS) {
     .map(d => d.name);
 
   for (const product of products) {
-    const enFile = path.join(enDir, product, 'index.mdx');
-    if (!fs.existsSync(enFile)) continue;
+    const productEnDir = path.join(enDir, product);
+    const productNlDir = path.join(i18nDir, product);
 
-    const { data: fm, content: enContent } = matter.read(enFile);
+    const mdxFiles = fs.readdirSync(productEnDir)
+      .filter(f => f.endsWith('.mdx'));
 
-    if (!fm.nl) {
-      skipped++;
-      continue;
+    for (const filename of mdxFiles) {
+      const enFile = path.join(productEnDir, filename);
+      const { data: fm } = matter.read(enFile);
+
+      if (!fm.nl) { skipped++; continue; }
+
+      fs.mkdirSync(productNlDir, { recursive: true });
+      const nlFile = path.join(productNlDir, filename);
+      syncFile(fm, nlFile, filename === 'index.mdx');
     }
-
-    const nl = fm.nl;
-    const nlDir = path.join(i18nDir, product);
-    const nlFile = path.join(nlDir, 'index.mdx');
-
-    fs.mkdirSync(nlDir, { recursive: true });
-
-    // Build NL frontmatter — inherit non-translatable keys from EN
-    const nlFm = {
-      title: nl.title || fm.title,
-    };
-    if (fm.sidebar_position !== undefined) nlFm.sidebar_position = fm.sidebar_position;
-    if (nl.summary) nlFm.summary = nl.summary;
-
-    const nlBody = nl.body || '';
-    const nlFileContent = matter.stringify(nlBody, nlFm);
-
-    fs.writeFileSync(nlFile, nlFileContent, 'utf8');
-    console.log(`  synced → ${path.relative(ROOT, nlFile)}`);
-    synced++;
   }
 }
 

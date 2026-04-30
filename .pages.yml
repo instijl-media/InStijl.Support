@@ -81,28 +81,23 @@ content:
                   - { name: summary, label: "Summary (NL)", type: text,   required: true }
                   - { name: body,    label: "Content (NL)", type: rich-text }
 
-          - name: app_ai_subpages_en
-            label: "Subpages (EN)"
+          - name: app_ai_subpages
+            label: Subpages
             type: collection
             path: content/apps/ai
             match: "*.mdx"
             exclude: ["index.mdx"]
             filename: "{title}.mdx"
             fields:
-              - { name: title,            label: Title,             type: string, required: true }
-              - { name: sidebar_position, label: "Sidebar position", type: number }
-              - { name: body,             label: Content,            type: rich-text }
-
-          - name: app_ai_subpages_nl
-            label: "Subpages (NL)"
-            type: collection
-            path: i18n/nl/docusaurus-plugin-content-docs-apps/current/ai
-            match: "*.mdx"
-            exclude: ["index.mdx"]
-            filename: "{title}.mdx"
-            fields:
-              - { name: title, label: Title,   type: string, required: true }
-              - { name: body,  label: Content, type: rich-text }
+              - { name: title,            label: "Title (EN)",       type: string, required: true }
+              - { name: sidebar_position, label: "Sidebar position",  type: number }
+              - { name: body,             label: "Content (EN)",      type: rich-text }
+              - name: nl
+                label: "\U0001F1F3\U0001F1F1 Dutch translation"
+                type: object
+                fields:
+                  - { name: title, label: "Title (NL)",   type: string, required: true }
+                  - { name: body,  label: "Content (NL)", type: rich-text }
 
       # ── Sync ──────────────────────────────────────────────────────────────
       - name: app_sync
@@ -173,28 +168,23 @@ content:
                   - { name: summary, label: "Summary (NL)", type: text,   required: true }
                   - { name: body,    label: "Content (NL)", type: rich-text }
 
-          - name: app_sync_subpages_en
-            label: "Subpages (EN)"
+          - name: app_sync_subpages
+            label: Subpages
             type: collection
             path: content/apps/sync
             match: "*.mdx"
             exclude: ["index.mdx"]
             filename: "{title}.mdx"
             fields:
-              - { name: title,            label: Title,             type: string, required: true }
-              - { name: sidebar_position, label: "Sidebar position", type: number }
-              - { name: body,             label: Content,            type: rich-text }
-
-          - name: app_sync_subpages_nl
-            label: "Subpages (NL)"
-            type: collection
-            path: i18n/nl/docusaurus-plugin-content-docs-apps/current/sync
-            match: "*.mdx"
-            exclude: ["index.mdx"]
-            filename: "{title}.mdx"
-            fields:
-              - { name: title, label: Title,   type: string, required: true }
-              - { name: body,  label: Content, type: rich-text }
+              - { name: title,            label: "Title (EN)",       type: string, required: true }
+              - { name: sidebar_position, label: "Sidebar position",  type: number }
+              - { name: body,             label: "Content (EN)",      type: rich-text }
+              - name: nl
+                label: "\U0001F1F3\U0001F1F1 Dutch translation"
+                type: object
+                fields:
+                  - { name: title, label: "Title (NL)",   type: string, required: true }
+                  - { name: body,  label: "Content (NL)", type: rich-text }
 
   # ═══════════════════════════════════════════════════════════════════════════
   # THEMES
@@ -273,28 +263,23 @@ content:
                   - { name: summary, label: "Summary (NL)", type: text,   required: true }
                   - { name: body,    label: "Content (NL)", type: rich-text }
 
-          - name: theme_inspire_subpages_en
-            label: "Subpages (EN)"
+          - name: theme_inspire_subpages
+            label: Subpages
             type: collection
             path: content/themes/inspire
             match: "*.mdx"
             exclude: ["index.mdx"]
             filename: "{title}.mdx"
             fields:
-              - { name: title,            label: Title,             type: string, required: true }
-              - { name: sidebar_position, label: "Sidebar position", type: number }
-              - { name: body,             label: Content,            type: rich-text }
-
-          - name: theme_inspire_subpages_nl
-            label: "Subpages (NL)"
-            type: collection
-            path: i18n/nl/docusaurus-plugin-content-docs-themes/current/inspire
-            match: "*.mdx"
-            exclude: ["index.mdx"]
-            filename: "{title}.mdx"
-            fields:
-              - { name: title, label: Title,   type: string, required: true }
-              - { name: body,  label: Content, type: rich-text }
+              - { name: title,            label: "Title (EN)",       type: string, required: true }
+              - { name: sidebar_position, label: "Sidebar position",  type: number }
+              - { name: body,             label: "Content (EN)",      type: rich-text }
+              - name: nl
+                label: "\U0001F1F3\U0001F1F1 Dutch translation"
+                type: object
+                fields:
+                  - { name: title, label: "Title (NL)",   type: string, required: true }
+                  - { name: body,  label: "Content (NL)", type: rich-text }
 
       # ── Unity ─────────────────────────────────────────────────────────────
       - name: theme_unity
@@ -365,25 +350,20 @@ content:
                   - { name: summary, label: "Summary (NL)", type: text,   required: true }
                   - { name: body,    label: "Content (NL)", type: rich-text }
 
-          - name: theme_unity_subpages_en
-            label: "Subpages (EN)"
+          - name: theme_unity_subpages
+            label: Subpages
             type: collection
             path: content/themes/unity
             match: "*.mdx"
             exclude: ["index.mdx"]
             filename: "{title}.mdx"
             fields:
-              - { name: title,            label: Title,             type: string, required: true }
-              - { name: sidebar_position, label: "Sidebar position", type: number }
-              - { name: body,             label: Content,            type: rich-text }
-
-          - name: theme_unity_subpages_nl
-            label: "Subpages (NL)"
-            type: collection
-            path: i18n/nl/docusaurus-plugin-content-docs-themes/current/unity
-            match: "*.mdx"
-            exclude: ["index.mdx"]
-            filename: "{title}.mdx"
-            fields:
-              - { name: title, label: Title,   type: string, required: true }
-              - { name: body,  label: Content, type: rich-text }
+              - { name: title,            label: "Title (EN)",       type: string, required: true }
+              - { name: sidebar_position, label: "Sidebar position",  type: number }
+              - { name: body,             label: "Content (EN)",      type: rich-text }
+              - name: nl
+                label: "\U0001F1F3\U0001F1F1 Dutch translation"
+                type: object
+                fields:
+                  - { name: title, label: "Title (NL)",   type: string, required: true }
+                  - { name: body,  label: "Content (NL)", type: rich-text }
