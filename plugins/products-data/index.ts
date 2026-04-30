@@ -85,10 +85,20 @@ async function collectProducts(
       const rel = path.join(slug, 'index.mdx');
       const translated = path.join(localeRoot, rel);
       const fallback = path.join(fallbackRoot, rel);
-      const file = fs.existsSync(translated) ? translated : fallback;
 
-      const raw = fs.readFileSync(file, 'utf8');
-      const {data} = matter(raw);
+      // Always read structural metadata (type, platform, status, logo, order)
+      // from the EN source — these fields are not written to translated files.
+      const enRaw = fs.readFileSync(fallback, 'utf8');
+      const {data: enData} = matter(enRaw);
+
+      // For display fields (title, summary) prefer the translated file.
+      let title = (enData.title as string) ?? slug;
+      let summary = (enData.summary as string) ?? '';
+      if (fs.existsSync(translated)) {
+        const {data: locData} = matter(fs.readFileSync(translated, 'utf8'));
+        if (locData.title) title = locData.title as string;
+        if (locData.summary) summary = locData.summary as string;
+      }
 
       const routeBase = type === 'app' ? 'apps' : 'themes';
       // Store the locale-agnostic permalink. Docusaurus `<Link>` will prefix
@@ -98,13 +108,13 @@ async function collectProducts(
       products.push({
         slug,
         type,
-        platform: (data.platform as ProductPlatform) ?? 'both',
-        status: (data.status as ProductStatus) ?? 'active',
-        title: (data.title as string) ?? slug,
-        summary: (data.summary as string) ?? '',
-        logo: data.logo as string | undefined,
-        cover: data.cover as string | undefined,
-        order: typeof data.order === 'number' ? data.order : undefined,
+        platform: (enData.platform as ProductPlatform) ?? 'both',
+        status: (enData.status as ProductStatus) ?? 'active',
+        title,
+        summary,
+        logo: enData.logo as string | undefined,
+        cover: enData.cover as string | undefined,
+        order: typeof enData.order === 'number' ? enData.order : undefined,
         permalink,
       });
     }

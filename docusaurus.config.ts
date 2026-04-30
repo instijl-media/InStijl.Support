@@ -65,7 +65,6 @@ const config: Config = {
         path: 'content/apps',
         routeBasePath: 'apps',
         sidebarPath: './sidebars.apps.ts',
-        editUrl: 'https://github.com/instijl/instijl.support/edit/main/',
       },
     ],
     [
@@ -75,7 +74,6 @@ const config: Config = {
         path: 'content/themes',
         routeBasePath: 'themes',
         sidebarPath: './sidebars.themes.ts',
-        editUrl: 'https://github.com/instijl/instijl.support/edit/main/',
       },
     ],
     path.resolve(__dirname, 'plugins/products-data'),
