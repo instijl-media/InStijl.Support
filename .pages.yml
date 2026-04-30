@@ -30,6 +30,7 @@ x-overview-fields: &overview-fields
         - { name: deprecated, label: Deprecated }
   - { name: logo,    label: Logo,         type: image }
   - { name: order,   label: "Sort order", type: number }
+  - { name: sidebar_position, label: "Sidebar position", type: number, default: 0 }
   - { name: type,    label: Type,         type: string, hidden: true }
   - { name: body,    label: "Content (EN)", type: rich-text }
   - { name: nl_body, label: "Content (NL)", type: rich-text }
