@@ -6,11 +6,10 @@
  * corresponding NL i18n files so Docusaurus can serve them.
  *
  * EN source field layout (managed via PagesCMS):
- *   nl:
- *     title: "..."
- *     summary: "..."
- *     body: |
- *       # NL content
+ *   nl_title: "..."
+ *   nl_summary: "..."   (index pages only)
+ *   nl_body: |
+ *     # NL content
  *
  * Run automatically before `build` and `start` via package.json scripts.
  */
@@ -37,24 +36,23 @@ let synced = 0;
 let skipped = 0;
 
 /**
- * Write a single NL file from a parsed EN file's `nl` frontmatter block.
- * @param {object} fm       - Full frontmatter of the EN source file
- * @param {string} nlFile   - Absolute path to write the NL output file
- * @param {boolean} isIndex - Whether this is a product index (includes summary)
+ * Write a single NL file from flat `nl_title` / `nl_summary` / `nl_body`
+ * frontmatter keys on the EN source file.
+ * @param {object}  fm       - Full frontmatter of the EN source file
+ * @param {string}  nlFile   - Absolute path to write the NL output file
+ * @param {boolean} isIndex  - Whether this is a product index (includes summary)
  */
 function syncFile(fm, nlFile, isIndex) {
-  if (!fm.nl) {
+  if (!fm.nl_title && !fm.nl_body) {
     skipped++;
     return;
   }
 
-  const nl = fm.nl;
-
-  const nlFm = { title: nl.title || fm.title };
+  const nlFm = { title: fm.nl_title || fm.title };
   if (fm.sidebar_position !== undefined) nlFm.sidebar_position = fm.sidebar_position;
-  if (isIndex && nl.summary) nlFm.summary = nl.summary;
+  if (isIndex && fm.nl_summary) nlFm.summary = fm.nl_summary;
 
-  const nlBody = nl.body || '';
+  const nlBody = fm.nl_body || '';
   fs.writeFileSync(nlFile, matter.stringify(nlBody, nlFm), 'utf8');
   console.log(`  synced → ${path.relative(ROOT, nlFile)}`);
   synced++;
@@ -78,7 +76,7 @@ for (const { enDir, i18nDir } of PLUGINS) {
       const enFile = path.join(productEnDir, filename);
       const { data: fm } = matter.read(enFile);
 
-      if (!fm.nl) { skipped++; continue; }
+      if (!fm.nl_title && !fm.nl_body) { skipped++; continue; }
 
       fs.mkdirSync(productNlDir, { recursive: true });
       const nlFile = path.join(productNlDir, filename);

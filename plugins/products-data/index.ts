@@ -16,18 +16,6 @@ export type ProductType = 'app' | 'theme';
 export type ProductPlatform = 'lightspeed' | 'shopify' | 'both';
 export type ProductStatus = 'active' | 'beta' | 'deprecated';
 
-export interface ProductLink {
-  label: string;
-  url: string;
-}
-
-export interface ProductPricing {
-  plan?: string;
-  price?: string;
-  interval?: string;
-  currency?: string;
-}
-
 export interface Product {
   slug: string;
   type: ProductType;
@@ -37,8 +25,6 @@ export interface Product {
   summary: string;
   logo?: string;
   cover?: string;
-  pricing?: ProductPricing | string;
-  links?: ProductLink[];
   order?: number;
   /** Permalink for current locale, e.g. `/en/apps/ai`. */
   permalink: string;
@@ -118,8 +104,6 @@ async function collectProducts(
         summary: (data.summary as string) ?? '',
         logo: data.logo as string | undefined,
         cover: data.cover as string | undefined,
-        pricing: data.pricing as ProductPricing | string | undefined,
-        links: (data.links as ProductLink[]) ?? [],
         order: typeof data.order === 'number' ? data.order : undefined,
         permalink,
       });

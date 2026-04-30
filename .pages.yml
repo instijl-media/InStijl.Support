@@ -22,8 +22,10 @@ content:
             type: file
             path: content/apps/ai/index.mdx
             fields:
-              - { name: title,    label: "Title (EN)",    type: string, required: true }
-              - { name: type,     label: Type,            type: string, hidden: true }
+              - { name: title,      label: "Title (EN)",    type: string, required: true }
+              - { name: nl_title,   label: "Title (NL)",    type: string, required: true }
+              - { name: summary,    label: "Summary (EN)",  type: text,   required: true }
+              - { name: nl_summary, label: "Summary (NL)",  type: text,   required: true }
               - name: platform
                 label: Platform
                 type: select
@@ -40,46 +42,11 @@ content:
                     - { name: active,     label: Active }
                     - { name: beta,       label: Beta }
                     - { name: deprecated, label: Deprecated }
-              - { name: summary, label: "Summary (EN)", type: text, required: true }
-              - { name: logo,    label: Logo,           type: image }
-              - { name: order,   label: "Sort order",   type: number }
-              - name: pricing
-                label: Pricing
-                type: object
-                fields:
-                  - { name: plan,  label: Plan,  type: string }
-                  - { name: price, label: Price, type: string }
-                  - name: interval
-                    label: Interval
-                    type: select
-                    options:
-                      values:
-                        - { name: month,    label: Per month }
-                        - { name: year,     label: Per year }
-                        - { name: one-time, label: One-time }
-                  - name: currency
-                    label: Currency
-                    type: select
-                    options:
-                      values:
-                        - { name: EUR, label: EUR }
-                        - { name: USD, label: USD }
-                        - { name: GBP, label: GBP }
-              - name: links
-                label: "External links"
-                type: object
-                list: true
-                fields:
-                  - { name: label, label: Label, type: string }
-                  - { name: url,   label: URL,   type: string }
-              - { name: body, label: "Content (EN)", type: rich-text }
-              - name: nl
-                label: "🇳🇱 Dutch translation"
-                type: object
-                fields:
-                  - { name: title,   label: "Title (NL)",   type: string, required: true }
-                  - { name: summary, label: "Summary (NL)", type: text,   required: true }
-                  - { name: body,    label: "Content (NL)", type: rich-text }
+              - { name: logo,     label: Logo,         type: image }
+              - { name: order,    label: "Sort order", type: number }
+              - { name: type,     label: Type,         type: string, hidden: true }
+              - { name: body,     label: "Content (EN)", type: rich-text }
+              - { name: nl_body,  label: "Content (NL)", type: rich-text }
 
           - name: app_ai_subpages
             label: Subpages
@@ -89,15 +56,11 @@ content:
             exclude: ["index.mdx"]
             filename: "{title}.mdx"
             fields:
-              - { name: title,            label: "Title (EN)",       type: string, required: true }
-              - { name: sidebar_position, label: "Sidebar position",  type: number }
-              - { name: body,             label: "Content (EN)",      type: rich-text }
-              - name: nl
-                label: "\U0001F1F3\U0001F1F1 Dutch translation"
-                type: object
-                fields:
-                  - { name: title, label: "Title (NL)",   type: string, required: true }
-                  - { name: body,  label: "Content (NL)", type: rich-text }
+              - { name: title,            label: "Title (EN)",      type: string, required: true }
+              - { name: nl_title,         label: "Title (NL)",      type: string, required: true }
+              - { name: sidebar_position, label: "Sidebar position", type: number }
+              - { name: body,             label: "Content (EN)",    type: rich-text }
+              - { name: nl_body,          label: "Content (NL)",    type: rich-text }
 
       # ── Sync ──────────────────────────────────────────────────────────────
       - name: app_sync
@@ -109,8 +72,10 @@ content:
             type: file
             path: content/apps/sync/index.mdx
             fields:
-              - { name: title,    label: "Title (EN)",    type: string, required: true }
-              - { name: type,     label: Type,            type: string, hidden: true }
+              - { name: title,      label: "Title (EN)",    type: string, required: true }
+              - { name: nl_title,   label: "Title (NL)",    type: string, required: true }
+              - { name: summary,    label: "Summary (EN)",  type: text,   required: true }
+              - { name: nl_summary, label: "Summary (NL)",  type: text,   required: true }
               - name: platform
                 label: Platform
                 type: select
@@ -127,46 +92,11 @@ content:
                     - { name: active,     label: Active }
                     - { name: beta,       label: Beta }
                     - { name: deprecated, label: Deprecated }
-              - { name: summary, label: "Summary (EN)", type: text, required: true }
-              - { name: logo,    label: Logo,           type: image }
-              - { name: order,   label: "Sort order",   type: number }
-              - name: pricing
-                label: Pricing
-                type: object
-                fields:
-                  - { name: plan,  label: Plan,  type: string }
-                  - { name: price, label: Price, type: string }
-                  - name: interval
-                    label: Interval
-                    type: select
-                    options:
-                      values:
-                        - { name: month,    label: Per month }
-                        - { name: year,     label: Per year }
-                        - { name: one-time, label: One-time }
-                  - name: currency
-                    label: Currency
-                    type: select
-                    options:
-                      values:
-                        - { name: EUR, label: EUR }
-                        - { name: USD, label: USD }
-                        - { name: GBP, label: GBP }
-              - name: links
-                label: "External links"
-                type: object
-                list: true
-                fields:
-                  - { name: label, label: Label, type: string }
-                  - { name: url,   label: URL,   type: string }
-              - { name: body, label: "Content (EN)", type: rich-text }
-              - name: nl
-                label: "🇳🇱 Dutch translation"
-                type: object
-                fields:
-                  - { name: title,   label: "Title (NL)",   type: string, required: true }
-                  - { name: summary, label: "Summary (NL)", type: text,   required: true }
-                  - { name: body,    label: "Content (NL)", type: rich-text }
+              - { name: logo,     label: Logo,         type: image }
+              - { name: order,    label: "Sort order", type: number }
+              - { name: type,     label: Type,         type: string, hidden: true }
+              - { name: body,     label: "Content (EN)", type: rich-text }
+              - { name: nl_body,  label: "Content (NL)", type: rich-text }
 
           - name: app_sync_subpages
             label: Subpages
@@ -176,15 +106,11 @@ content:
             exclude: ["index.mdx"]
             filename: "{title}.mdx"
             fields:
-              - { name: title,            label: "Title (EN)",       type: string, required: true }
-              - { name: sidebar_position, label: "Sidebar position",  type: number }
-              - { name: body,             label: "Content (EN)",      type: rich-text }
-              - name: nl
-                label: "\U0001F1F3\U0001F1F1 Dutch translation"
-                type: object
-                fields:
-                  - { name: title, label: "Title (NL)",   type: string, required: true }
-                  - { name: body,  label: "Content (NL)", type: rich-text }
+              - { name: title,            label: "Title (EN)",      type: string, required: true }
+              - { name: nl_title,         label: "Title (NL)",      type: string, required: true }
+              - { name: sidebar_position, label: "Sidebar position", type: number }
+              - { name: body,             label: "Content (EN)",    type: rich-text }
+              - { name: nl_body,          label: "Content (NL)",    type: rich-text }
 
   # ═══════════════════════════════════════════════════════════════════════════
   # THEMES
@@ -204,8 +130,10 @@ content:
             type: file
             path: content/themes/inspire/index.mdx
             fields:
-              - { name: title,    label: "Title (EN)",    type: string, required: true }
-              - { name: type,     label: Type,            type: string, hidden: true }
+              - { name: title,      label: "Title (EN)",    type: string, required: true }
+              - { name: nl_title,   label: "Title (NL)",    type: string, required: true }
+              - { name: summary,    label: "Summary (EN)",  type: text,   required: true }
+              - { name: nl_summary, label: "Summary (NL)",  type: text,   required: true }
               - name: platform
                 label: Platform
                 type: select
@@ -222,46 +150,11 @@ content:
                     - { name: active,     label: Active }
                     - { name: beta,       label: Beta }
                     - { name: deprecated, label: Deprecated }
-              - { name: summary, label: "Summary (EN)", type: text, required: true }
-              - { name: logo,    label: Logo,           type: image }
-              - { name: order,   label: "Sort order",   type: number }
-              - name: pricing
-                label: Pricing
-                type: object
-                fields:
-                  - { name: plan,  label: Plan,  type: string }
-                  - { name: price, label: Price, type: string }
-                  - name: interval
-                    label: Interval
-                    type: select
-                    options:
-                      values:
-                        - { name: month,    label: Per month }
-                        - { name: year,     label: Per year }
-                        - { name: one-time, label: One-time }
-                  - name: currency
-                    label: Currency
-                    type: select
-                    options:
-                      values:
-                        - { name: EUR, label: EUR }
-                        - { name: USD, label: USD }
-                        - { name: GBP, label: GBP }
-              - name: links
-                label: "External links"
-                type: object
-                list: true
-                fields:
-                  - { name: label, label: Label, type: string }
-                  - { name: url,   label: URL,   type: string }
-              - { name: body, label: "Content (EN)", type: rich-text }
-              - name: nl
-                label: "🇳🇱 Dutch translation"
-                type: object
-                fields:
-                  - { name: title,   label: "Title (NL)",   type: string, required: true }
-                  - { name: summary, label: "Summary (NL)", type: text,   required: true }
-                  - { name: body,    label: "Content (NL)", type: rich-text }
+              - { name: logo,     label: Logo,         type: image }
+              - { name: order,    label: "Sort order", type: number }
+              - { name: type,     label: Type,         type: string, hidden: true }
+              - { name: body,     label: "Content (EN)", type: rich-text }
+              - { name: nl_body,  label: "Content (NL)", type: rich-text }
 
           - name: theme_inspire_subpages
             label: Subpages
@@ -271,15 +164,11 @@ content:
             exclude: ["index.mdx"]
             filename: "{title}.mdx"
             fields:
-              - { name: title,            label: "Title (EN)",       type: string, required: true }
-              - { name: sidebar_position, label: "Sidebar position",  type: number }
-              - { name: body,             label: "Content (EN)",      type: rich-text }
-              - name: nl
-                label: "\U0001F1F3\U0001F1F1 Dutch translation"
-                type: object
-                fields:
-                  - { name: title, label: "Title (NL)",   type: string, required: true }
-                  - { name: body,  label: "Content (NL)", type: rich-text }
+              - { name: title,            label: "Title (EN)",      type: string, required: true }
+              - { name: nl_title,         label: "Title (NL)",      type: string, required: true }
+              - { name: sidebar_position, label: "Sidebar position", type: number }
+              - { name: body,             label: "Content (EN)",    type: rich-text }
+              - { name: nl_body,          label: "Content (NL)",    type: rich-text }
 
       # ── Unity ─────────────────────────────────────────────────────────────
       - name: theme_unity
@@ -291,8 +180,10 @@ content:
             type: file
             path: content/themes/unity/index.mdx
             fields:
-              - { name: title,    label: "Title (EN)",    type: string, required: true }
-              - { name: type,     label: Type,            type: string, hidden: true }
+              - { name: title,      label: "Title (EN)",    type: string, required: true }
+              - { name: nl_title,   label: "Title (NL)",    type: string, required: true }
+              - { name: summary,    label: "Summary (EN)",  type: text,   required: true }
+              - { name: nl_summary, label: "Summary (NL)",  type: text,   required: true }
               - name: platform
                 label: Platform
                 type: select
@@ -309,46 +200,11 @@ content:
                     - { name: active,     label: Active }
                     - { name: beta,       label: Beta }
                     - { name: deprecated, label: Deprecated }
-              - { name: summary, label: "Summary (EN)", type: text, required: true }
-              - { name: logo,    label: Logo,           type: image }
-              - { name: order,   label: "Sort order",   type: number }
-              - name: pricing
-                label: Pricing
-                type: object
-                fields:
-                  - { name: plan,  label: Plan,  type: string }
-                  - { name: price, label: Price, type: string }
-                  - name: interval
-                    label: Interval
-                    type: select
-                    options:
-                      values:
-                        - { name: month,    label: Per month }
-                        - { name: year,     label: Per year }
-                        - { name: one-time, label: One-time }
-                  - name: currency
-                    label: Currency
-                    type: select
-                    options:
-                      values:
-                        - { name: EUR, label: EUR }
-                        - { name: USD, label: USD }
-                        - { name: GBP, label: GBP }
-              - name: links
-                label: "External links"
-                type: object
-                list: true
-                fields:
-                  - { name: label, label: Label, type: string }
-                  - { name: url,   label: URL,   type: string }
-              - { name: body, label: "Content (EN)", type: rich-text }
-              - name: nl
-                label: "🇳🇱 Dutch translation"
-                type: object
-                fields:
-                  - { name: title,   label: "Title (NL)",   type: string, required: true }
-                  - { name: summary, label: "Summary (NL)", type: text,   required: true }
-                  - { name: body,    label: "Content (NL)", type: rich-text }
+              - { name: logo,     label: Logo,         type: image }
+              - { name: order,    label: "Sort order", type: number }
+              - { name: type,     label: Type,         type: string, hidden: true }
+              - { name: body,     label: "Content (EN)", type: rich-text }
+              - { name: nl_body,  label: "Content (NL)", type: rich-text }
 
           - name: theme_unity_subpages
             label: Subpages
@@ -358,12 +214,8 @@ content:
             exclude: ["index.mdx"]
             filename: "{title}.mdx"
             fields:
-              - { name: title,            label: "Title (EN)",       type: string, required: true }
-              - { name: sidebar_position, label: "Sidebar position",  type: number }
-              - { name: body,             label: "Content (EN)",      type: rich-text }
-              - name: nl
-                label: "\U0001F1F3\U0001F1F1 Dutch translation"
-                type: object
-                fields:
-                  - { name: title, label: "Title (NL)",   type: string, required: true }
-                  - { name: body,  label: "Content (NL)", type: rich-text }
+              - { name: title,            label: "Title (EN)",      type: string, required: true }
+              - { name: nl_title,         label: "Title (NL)",      type: string, required: true }
+              - { name: sidebar_position, label: "Sidebar position", type: number }
+              - { name: body,             label: "Content (EN)",    type: rich-text }
+              - { name: nl_body,          label: "Content (NL)",    type: rich-text }

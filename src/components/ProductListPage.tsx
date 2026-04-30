@@ -60,7 +60,7 @@ export default function ProductListPage({
   empty,
 }: Props): React.ReactElement {
   const {products} = usePluginData('products-data') as {products: Product[]};
-  const ofType = useMemo(() => products.filter((p) => p.type === type), [products, type]);
+  const ofType = useMemo(() => products.filter((p) => p.type === type && p.status === 'active'), [products, type]);
 
   const [filters, setFilters] = useState<ProductFilters>(DEFAULT_FILTERS);
 
