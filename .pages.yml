@@ -3,332 +3,489 @@ media:
   output: /img/products
 
 content:
-  # ─── Apps (EN) ────────────────────────────────────────────────────────────
 
-  - name: apps_en
-    label: Apps (EN)
-    type: collection
-    path: content/apps
-    match: "*/index.mdx"
-    filename: "{title}/index.mdx"
-    view:
-      fields: [title, platform, status]
-    fields:
-      - name: title
-        label: Title
-        type: string
-        required: true
-      - name: type
-        label: Type
-        type: string
-        hidden: true
-      - name: platform
-        label: Platform
-        type: select
-        options:
-          values:
-            - name: lightspeed
-              label: Lightspeed
-            - name: shopify
-              label: Shopify
-            - name: both
-              label: Both
-      - name: status
-        label: Status
-        type: select
-        options:
-          values:
-            - name: active
-              label: Active
-            - name: beta
-              label: Beta
-            - name: deprecated
-              label: Deprecated
-      - name: summary
-        label: Summary
-        type: text
-        required: true
-      - name: logo
-        label: Logo
-        type: image
-      - name: order
-        label: Sort order
-        type: number
-      - name: pricing
-        label: Pricing
-        type: object
-        fields:
-          - name: plan
-            label: Plan
-            type: string
-          - name: price
-            label: Price
-            type: string
-          - name: interval
-            label: Interval
-            type: select
-            options:
-              values:
-                - name: month
-                  label: Per month
-                - name: year
-                  label: Per year
-                - name: one-time
-                  label: One-time
-          - name: currency
-            label: Currency
-            type: select
-            options:
-              values:
-                - name: EUR
-                  label: EUR
-                - name: USD
-                  label: USD
-                - name: GBP
-                  label: GBP
-      - name: links
-        label: External links
-        type: object
-        list: true
-        fields:
-          - name: label
-            label: Label
-            type: string
-          - name: url
-            label: URL
-            type: string
-      - name: body
-        label: Content
-        type: rich-text
+  # ═══════════════════════════════════════════════════════════════════════════
+  # APPS
+  # ═══════════════════════════════════════════════════════════════════════════
+  - name: apps
+    label: Apps
+    type: group
+    items:
 
-  - name: apps_en_subpages
-    label: "Apps · subpages (EN)"
-    type: collection
-    path: content/apps
-    match: "*/*.mdx"
-    exclude:
-      - "*/index.mdx"
-    operations:
-      create: false
-    view:
-      fields: [title]
-    fields:
-      - name: title
-        label: Title
-        type: string
-        required: true
-      - name: sidebar_position
-        label: Sidebar position
-        type: number
-      - name: body
-        label: Content
-        type: rich-text
+      # ── AI ────────────────────────────────────────────────────────────────
+      - name: app_ai
+        label: AI
+        type: group
+        items:
+          - name: app_ai_en
+            label: "Overview (EN)"
+            type: file
+            path: content/apps/ai/index.mdx
+            fields:
+              - { name: title,    label: Title,    type: string, required: true }
+              - { name: type,     label: Type,     type: string, hidden: true }
+              - name: platform
+                label: Platform
+                type: select
+                options:
+                  values:
+                    - { name: lightspeed, label: Lightspeed }
+                    - { name: shopify,    label: Shopify }
+                    - { name: both,       label: Both }
+              - name: status
+                label: Status
+                type: select
+                options:
+                  values:
+                    - { name: active,     label: Active }
+                    - { name: beta,       label: Beta }
+                    - { name: deprecated, label: Deprecated }
+              - { name: summary, label: Summary, type: text, required: true }
+              - { name: logo,    label: Logo,    type: image }
+              - { name: order,   label: "Sort order", type: number }
+              - name: pricing
+                label: Pricing
+                type: object
+                fields:
+                  - { name: plan,     label: Plan,     type: string }
+                  - { name: price,    label: Price,    type: string }
+                  - name: interval
+                    label: Interval
+                    type: select
+                    options:
+                      values:
+                        - { name: month,    label: Per month }
+                        - { name: year,     label: Per year }
+                        - { name: one-time, label: One-time }
+                  - name: currency
+                    label: Currency
+                    type: select
+                    options:
+                      values:
+                        - { name: EUR, label: EUR }
+                        - { name: USD, label: USD }
+                        - { name: GBP, label: GBP }
+              - name: links
+                label: "External links"
+                type: object
+                list: true
+                fields:
+                  - { name: label, label: Label, type: string }
+                  - { name: url,   label: URL,   type: string }
+              - { name: body, label: Content, type: rich-text }
 
-  # ─── Themes (EN) ──────────────────────────────────────────────────────────
+          - name: app_ai_pages_en
+            label: "Subpages (EN)"
+            type: collection
+            path: content/apps/ai
+            match: "*.mdx"
+            exclude: ["index.mdx"]
+            filename: "{title}.mdx"
+            fields:
+              - { name: title,            label: Title,             type: string, required: true }
+              - { name: sidebar_position, label: "Sidebar position", type: number }
+              - { name: body,             label: Content,            type: rich-text }
 
-  - name: themes_en
-    label: Themes (EN)
-    type: collection
-    path: content/themes
-    match: "*/index.mdx"
-    filename: "{title}/index.mdx"
-    view:
-      fields: [title, platform, status]
-    fields:
-      - name: title
-        label: Title
-        type: string
-        required: true
-      - name: type
-        label: Type
-        type: string
-        hidden: true
-      - name: platform
-        label: Platform
-        type: select
-        options:
-          values:
-            - name: lightspeed
-              label: Lightspeed
-            - name: shopify
-              label: Shopify
-            - name: both
-              label: Both
-      - name: status
-        label: Status
-        type: select
-        options:
-          values:
-            - name: active
-              label: Active
-            - name: beta
-              label: Beta
-            - name: deprecated
-              label: Deprecated
-      - name: summary
-        label: Summary
-        type: text
-        required: true
-      - name: logo
-        label: Logo
-        type: image
-      - name: order
-        label: Sort order
-        type: number
-      - name: pricing
-        label: Pricing
-        type: object
-        fields:
-          - name: plan
-            label: Plan
-            type: string
-          - name: price
-            label: Price
-            type: string
-          - name: interval
-            label: Interval
-            type: select
-            options:
-              values:
-                - name: month
-                  label: Per month
-                - name: year
-                  label: Per year
-                - name: one-time
-                  label: One-time
-          - name: currency
-            label: Currency
-            type: select
-            options:
-              values:
-                - name: EUR
-                  label: EUR
-                - name: USD
-                  label: USD
-                - name: GBP
-                  label: GBP
-      - name: links
-        label: External links
-        type: object
-        list: true
-        fields:
-          - name: label
-            label: Label
-            type: string
-          - name: url
-            label: URL
-            type: string
-      - name: body
-        label: Content
-        type: rich-text
+          - name: app_ai_nl
+            label: "Overview (NL)"
+            type: file
+            path: i18n/nl/docusaurus-plugin-content-docs-apps/current/ai/index.mdx
+            fields:
+              - { name: title,   label: Title,   type: string, required: true }
+              - { name: summary, label: Summary, type: text,   required: true }
+              - { name: body,    label: Content, type: rich-text }
 
-  - name: themes_en_subpages
-    label: "Themes · subpages (EN)"
-    type: collection
-    path: content/themes
-    match: "*/*.mdx"
-    exclude:
-      - "*/index.mdx"
-    operations:
-      create: false
-    view:
-      fields: [title]
-    fields:
-      - name: title
-        label: Title
-        type: string
-        required: true
-      - name: sidebar_position
-        label: Sidebar position
-        type: number
-      - name: body
-        label: Content
-        type: rich-text
+          - name: app_ai_pages_nl
+            label: "Subpages (NL)"
+            type: collection
+            path: i18n/nl/docusaurus-plugin-content-docs-apps/current/ai
+            match: "*.mdx"
+            exclude: ["index.mdx"]
+            filename: "{title}.mdx"
+            fields:
+              - { name: title, label: Title,   type: string, required: true }
+              - { name: body,  label: Content, type: rich-text }
 
-  # ─── Apps (NL) ────────────────────────────────────────────────────────────
+      # ── Sync ──────────────────────────────────────────────────────────────
+      - name: app_sync
+        label: Sync
+        type: group
+        items:
+          - name: app_sync_en
+            label: "Overview (EN)"
+            type: file
+            path: content/apps/sync/index.mdx
+            fields:
+              - { name: title,    label: Title,    type: string, required: true }
+              - { name: type,     label: Type,     type: string, hidden: true }
+              - name: platform
+                label: Platform
+                type: select
+                options:
+                  values:
+                    - { name: lightspeed, label: Lightspeed }
+                    - { name: shopify,    label: Shopify }
+                    - { name: both,       label: Both }
+              - name: status
+                label: Status
+                type: select
+                options:
+                  values:
+                    - { name: active,     label: Active }
+                    - { name: beta,       label: Beta }
+                    - { name: deprecated, label: Deprecated }
+              - { name: summary, label: Summary, type: text, required: true }
+              - { name: logo,    label: Logo,    type: image }
+              - { name: order,   label: "Sort order", type: number }
+              - name: pricing
+                label: Pricing
+                type: object
+                fields:
+                  - { name: plan,     label: Plan,  type: string }
+                  - { name: price,    label: Price, type: string }
+                  - name: interval
+                    label: Interval
+                    type: select
+                    options:
+                      values:
+                        - { name: month,    label: Per month }
+                        - { name: year,     label: Per year }
+                        - { name: one-time, label: One-time }
+                  - name: currency
+                    label: Currency
+                    type: select
+                    options:
+                      values:
+                        - { name: EUR, label: EUR }
+                        - { name: USD, label: USD }
+                        - { name: GBP, label: GBP }
+              - name: links
+                label: "External links"
+                type: object
+                list: true
+                fields:
+                  - { name: label, label: Label, type: string }
+                  - { name: url,   label: URL,   type: string }
+              - { name: body, label: Content, type: rich-text }
 
-  - name: apps_nl
-    label: Apps (NL)
-    type: collection
-    path: i18n/nl/docusaurus-plugin-content-docs-apps/current
-    match: "*/index.mdx"
-    operations:
-      create: false
-    view:
-      fields: [title]
-    fields:
-      - name: title
-        label: Title
-        type: string
-        required: true
-      - name: summary
-        label: Summary
-        type: text
-        required: true
-      - name: body
-        label: Content
-        type: rich-text
+          - name: app_sync_pages_en
+            label: "Subpages (EN)"
+            type: collection
+            path: content/apps/sync
+            match: "*.mdx"
+            exclude: ["index.mdx"]
+            filename: "{title}.mdx"
+            fields:
+              - { name: title,            label: Title,             type: string, required: true }
+              - { name: sidebar_position, label: "Sidebar position", type: number }
+              - { name: body,             label: Content,            type: rich-text }
 
-  - name: apps_nl_subpages
-    label: "Apps · subpages (NL)"
-    type: collection
-    path: i18n/nl/docusaurus-plugin-content-docs-apps/current
-    match: "*/*.mdx"
-    exclude:
-      - "*/index.mdx"
-    operations:
-      create: false
-    view:
-      fields: [title]
-    fields:
-      - name: title
-        label: Title
-        type: string
-        required: true
-      - name: body
-        label: Content
-        type: rich-text
+          - name: app_sync_nl
+            label: "Overview (NL)"
+            type: file
+            path: i18n/nl/docusaurus-plugin-content-docs-apps/current/sync/index.mdx
+            fields:
+              - { name: title,   label: Title,   type: string, required: true }
+              - { name: summary, label: Summary, type: text,   required: true }
+              - { name: body,    label: Content, type: rich-text }
 
-  # ─── Themes (NL) ──────────────────────────────────────────────────────────
+          - name: app_sync_pages_nl
+            label: "Subpages (NL)"
+            type: collection
+            path: i18n/nl/docusaurus-plugin-content-docs-apps/current/sync
+            match: "*.mdx"
+            exclude: ["index.mdx"]
+            filename: "{title}.mdx"
+            fields:
+              - { name: title, label: Title,   type: string, required: true }
+              - { name: body,  label: Content, type: rich-text }
 
-  - name: themes_nl
-    label: "Thema's (NL)"
-    type: collection
-    path: i18n/nl/docusaurus-plugin-content-docs-themes/current
-    match: "*/index.mdx"
-    operations:
-      create: false
-    view:
-      fields: [title]
-    fields:
-      - name: title
-        label: Title
-        type: string
-        required: true
-      - name: summary
-        label: Summary
-        type: text
-        required: true
-      - name: body
-        label: Content
-        type: rich-text
+  # ═══════════════════════════════════════════════════════════════════════════
+  # THEMES
+  # ═══════════════════════════════════════════════════════════════════════════
+  - name: themes
+    label: Themes
+    type: group
+    items:
 
-  - name: themes_nl_subpages
-    label: "Thema's · subpages (NL)"
-    type: collection
-    path: i18n/nl/docusaurus-plugin-content-docs-themes/current
-    match: "*/*.mdx"
-    exclude:
-      - "*/index.mdx"
-    operations:
-      create: false
-    view:
-      fields: [title]
-    fields:
-      - name: title
-        label: Title
-        type: string
-        required: true
-      - name: body
-        label: Content
-        type: rich-text
+      # ── Inspire ───────────────────────────────────────────────────────────
+      - name: theme_inspire
+        label: Inspire
+        type: group
+        items:
+          - name: theme_inspire_en
+            label: "Overview (EN)"
+            type: file
+            path: content/themes/inspire/index.mdx
+            fields:
+              - { name: title,    label: Title,    type: string, required: true }
+              - { name: type,     label: Type,     type: string, hidden: true }
+              - name: platform
+                label: Platform
+                type: select
+                options:
+                  values:
+                    - { name: lightspeed, label: Lightspeed }
+                    - { name: shopify,    label: Shopify }
+                    - { name: both,       label: Both }
+              - name: status
+                label: Status
+                type: select
+                options:
+                  values:
+                    - { name: active,     label: Active }
+                    - { name: beta,       label: Beta }
+                    - { name: deprecated, label: Deprecated }
+              - { name: summary, label: Summary, type: text, required: true }
+              - { name: logo,    label: Logo,    type: image }
+              - { name: order,   label: "Sort order", type: number }
+              - name: pricing
+                label: Pricing
+                type: object
+                fields:
+                  - { name: plan,     label: Plan,  type: string }
+                  - { name: price,    label: Price, type: string }
+                  - name: interval
+                    label: Interval
+                    type: select
+                    options:
+                      values:
+                        - { name: month,    label: Per month }
+                        - { name: year,     label: Per year }
+                        - { name: one-time, label: One-time }
+                  - name: currency
+                    label: Currency
+                    type: select
+                    options:
+                      values:
+                        - { name: EUR, label: EUR }
+                        - { name: USD, label: USD }
+                        - { name: GBP, label: GBP }
+              - name: links
+                label: "External links"
+                type: object
+                list: true
+                fields:
+                  - { name: label, label: Label, type: string }
+                  - { name: url,   label: URL,   type: string }
+              - { name: body, label: Content, type: rich-text }
+
+          - name: theme_inspire_pages_en
+            label: "Subpages (EN)"
+            type: collection
+            path: content/themes/inspire
+            match: "*.mdx"
+            exclude: ["index.mdx"]
+            filename: "{title}.mdx"
+            fields:
+              - { name: title,            label: Title,             type: string, required: true }
+              - { name: sidebar_position, label: "Sidebar position", type: number }
+              - { name: body,             label: Content,            type: rich-text }
+
+          - name: theme_inspire_nl
+            label: "Overview (NL)"
+            type: file
+            path: i18n/nl/docusaurus-plugin-content-docs-themes/current/inspire/index.mdx
+            fields:
+              - { name: title,   label: Title,   type: string, required: true }
+              - { name: summary, label: Summary, type: text,   required: true }
+              - { name: body,    label: Content, type: rich-text }
+
+          - name: theme_inspire_pages_nl
+            label: "Subpages (NL)"
+            type: collection
+            path: i18n/nl/docusaurus-plugin-content-docs-themes/current/inspire
+            match: "*.mdx"
+            exclude: ["index.mdx"]
+            filename: "{title}.mdx"
+            fields:
+              - { name: title, label: Title,   type: string, required: true }
+              - { name: body,  label: Content, type: rich-text }
+
+      # ── Studio ────────────────────────────────────────────────────────────
+      - name: theme_studio
+        label: Studio
+        type: group
+        items:
+          - name: theme_studio_en
+            label: "Overview (EN)"
+            type: file
+            path: content/themes/studio/index.mdx
+            fields:
+              - { name: title,    label: Title,    type: string, required: true }
+              - { name: type,     label: Type,     type: string, hidden: true }
+              - name: platform
+                label: Platform
+                type: select
+                options:
+                  values:
+                    - { name: lightspeed, label: Lightspeed }
+                    - { name: shopify,    label: Shopify }
+                    - { name: both,       label: Both }
+              - name: status
+                label: Status
+                type: select
+                options:
+                  values:
+                    - { name: active,     label: Active }
+                    - { name: beta,       label: Beta }
+                    - { name: deprecated, label: Deprecated }
+              - { name: summary, label: Summary, type: text, required: true }
+              - { name: logo,    label: Logo,    type: image }
+              - { name: order,   label: "Sort order", type: number }
+              - name: pricing
+                label: Pricing
+                type: object
+                fields:
+                  - { name: plan,     label: Plan,  type: string }
+                  - { name: price,    label: Price, type: string }
+                  - name: interval
+                    label: Interval
+                    type: select
+                    options:
+                      values:
+                        - { name: month,    label: Per month }
+                        - { name: year,     label: Per year }
+                        - { name: one-time, label: One-time }
+                  - name: currency
+                    label: Currency
+                    type: select
+                    options:
+                      values:
+                        - { name: EUR, label: EUR }
+                        - { name: USD, label: USD }
+                        - { name: GBP, label: GBP }
+              - name: links
+                label: "External links"
+                type: object
+                list: true
+                fields:
+                  - { name: label, label: Label, type: string }
+                  - { name: url,   label: URL,   type: string }
+              - { name: body, label: Content, type: rich-text }
+
+          - name: theme_studio_pages_en
+            label: "Subpages (EN)"
+            type: collection
+            path: content/themes/studio
+            match: "*.mdx"
+            exclude: ["index.mdx"]
+            filename: "{title}.mdx"
+            fields:
+              - { name: title,            label: Title,             type: string, required: true }
+              - { name: sidebar_position, label: "Sidebar position", type: number }
+              - { name: body,             label: Content,            type: rich-text }
+
+          - name: theme_studio_nl
+            label: "Overview (NL)"
+            type: file
+            path: i18n/nl/docusaurus-plugin-content-docs-themes/current/studio/index.mdx
+            fields:
+              - { name: title,   label: Title,   type: string, required: true }
+              - { name: summary, label: Summary, type: text,   required: true }
+              - { name: body,    label: Content, type: rich-text }
+
+          - name: theme_studio_pages_nl
+            label: "Subpages (NL)"
+            type: collection
+            path: i18n/nl/docusaurus-plugin-content-docs-themes/current/studio
+            match: "*.mdx"
+            exclude: ["index.mdx"]
+            filename: "{title}.mdx"
+            fields:
+              - { name: title, label: Title,   type: string, required: true }
+              - { name: body,  label: Content, type: rich-text }
+
+      # ── Unity ─────────────────────────────────────────────────────────────
+      - name: theme_unity
+        label: Unity
+        type: group
+        items:
+          - name: theme_unity_en
+            label: "Overview (EN)"
+            type: file
+            path: content/themes/unity/index.mdx
+            fields:
+              - { name: title,    label: Title,    type: string, required: true }
+              - { name: type,     label: Type,     type: string, hidden: true }
+              - name: platform
+                label: Platform
+                type: select
+                options:
+                  values:
+                    - { name: lightspeed, label: Lightspeed }
+                    - { name: shopify,    label: Shopify }
+                    - { name: both,       label: Both }
+              - name: status
+                label: Status
+                type: select
+                options:
+                  values:
+                    - { name: active,     label: Active }
+                    - { name: beta,       label: Beta }
+                    - { name: deprecated, label: Deprecated }
+              - { name: summary, label: Summary, type: text, required: true }
+              - { name: logo,    label: Logo,    type: image }
+              - { name: order,   label: "Sort order", type: number }
+              - name: pricing
+                label: Pricing
+                type: object
+                fields:
+                  - { name: plan,     label: Plan,  type: string }
+                  - { name: price,    label: Price, type: string }
+                  - name: interval
+                    label: Interval
+                    type: select
+                    options:
+                      values:
+                        - { name: month,    label: Per month }
+                        - { name: year,     label: Per year }
+                        - { name: one-time, label: One-time }
+                  - name: currency
+                    label: Currency
+                    type: select
+                    options:
+                      values:
+                        - { name: EUR, label: EUR }
+                        - { name: USD, label: USD }
+                        - { name: GBP, label: GBP }
+              - name: links
+                label: "External links"
+                type: object
+                list: true
+                fields:
+                  - { name: label, label: Label, type: string }
+                  - { name: url,   label: URL,   type: string }
+              - { name: body, label: Content, type: rich-text }
+
+          - name: theme_unity_pages_en
+            label: "Subpages (EN)"
+            type: collection
+            path: content/themes/unity
+            match: "*.mdx"
+            exclude: ["index.mdx"]
+            filename: "{title}.mdx"
+            fields:
+              - { name: title,            label: Title,             type: string, required: true }
+              - { name: sidebar_position, label: "Sidebar position", type: number }
+              - { name: body,             label: Content,            type: rich-text }
+
+          - name: theme_unity_nl
+            label: "Overview (NL)"
+            type: file
+            path: i18n/nl/docusaurus-plugin-content-docs-themes/current/unity/index.mdx
+            fields:
+              - { name: title,   label: Title,   type: string, required: true }
+              - { name: summary, label: Summary, type: text,   required: true }
+              - { name: body,    label: Content, type: rich-text }
+
+          - name: theme_unity_pages_nl
+            label: "Subpages (NL)"
+            type: collection
+            path: i18n/nl/docusaurus-plugin-content-docs-themes/current/unity
+            match: "*.mdx"
+            exclude: ["index.mdx"]
+            filename: "{title}.mdx"
+            fields:
+              - { name: title, label: Title,   type: string, required: true }
+              - { name: body,  label: Content, type: rich-text }
