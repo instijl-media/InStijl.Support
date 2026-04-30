@@ -79,7 +79,7 @@ content:
         type: collection
         path: content/apps
         match: "*/*.mdx"
-        exclude: ["*/index.mdx"]
+        exclude: ["index.mdx"]
         filename: "{folder}/{title}.mdx"
         fields: *subpage-fields
 
@@ -112,6 +112,6 @@ content:
         type: collection
         path: content/themes
         match: "*/*.mdx"
-        exclude: ["*/index.mdx"]
+        exclude: ["index.mdx"]
         filename: "{folder}/{title}.mdx"
         fields: *subpage-fields
