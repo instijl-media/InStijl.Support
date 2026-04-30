@@ -35,12 +35,12 @@ x-overview-fields: &overview-fields
   - { name: body,    label: "Content (EN)", type: rich-text }
   - { name: nl_body, label: "Content (NL)", type: rich-text }
   - name: embeds
-    label: "HTML Embeds"
+    label: "HTML Embeds — use [embed:id] in content to place"
     type: object
     list: true
     fields:
-      - { name: id,   label: "Shortcode ID (e.g. video1)", type: string, required: true }
-      - { name: html, label: "HTML / embed code",          type: text }
+      - { name: id,   label: "ID — used in body as [embed:id]", type: string, required: true }
+      - { name: html, label: "HTML / embed code",               type: text }
 
 x-subpage-fields: &subpage-fields
   - { name: folder,          label: "Product folder (slug, e.g. InStijlAI)", type: string }
@@ -50,12 +50,12 @@ x-subpage-fields: &subpage-fields
   - { name: body,             label: "Content (EN)",     type: rich-text }
   - { name: nl_body,          label: "Content (NL)",     type: rich-text }
   - name: embeds
-    label: "HTML Embeds"
+    label: "HTML Embeds — use [embed:id] in content to place"
     type: object
     list: true
     fields:
-      - { name: id,   label: "Shortcode ID (e.g. video1)", type: string, required: true }
-      - { name: html, label: "HTML / embed code",          type: text }
+      - { name: id,   label: "ID — used in body as [embed:id]", type: string, required: true }
+      - { name: html, label: "HTML / embed code",               type: text }
 
 content:
 
