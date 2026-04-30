@@ -32,7 +32,9 @@ export default function remarkEmbedShortcode() {
         if (node.type === 'yaml') {
           try {
             embeds = matter('---\n' + node.value + '\n---').data?.embeds;
-          } catch {}
+          } catch (e) {
+            console.error('[embed-shortcode] YAML parse error:', e.message);
+          }
           break;
         }
       }
@@ -51,15 +53,39 @@ export default function remarkEmbedShortcode() {
 
     visit(tree, 'paragraph', (node, index, parent) => {
       if (!parent || index == null) return;
-      if (node.children.length !== 1) return;
 
-      const child = node.children[0];
-      if (child.type !== 'text') return;
+      let embedId = null;
 
-      const match = child.value.trim().match(/^\[embed:([^\]]+)\]$/);
-      if (!match) return;
+      if (node.children.length === 1) {
+        const child = node.children[0];
 
-      const html = embedMap[match[1].trim()];
+        if (child.type === 'text') {
+          // Plain text: [embed:id]
+          const match = child.value.trim().match(/^\[embed:([^\]]+)\]$/);
+          if (match) embedId = match[1].trim();
+        } else if (child.type === 'linkReference') {
+          // Markdown linkReference: identifier is "embed:id"
+          const id = child.identifier?.trim() ?? '';
+          if (id.startsWith('embed:')) embedId = id.slice('embed:'.length).trim();
+        }
+      } else if (node.children.length === 3) {
+        // remark-directive splits [embed:id] into:
+        //   text("[embed") + textDirective(name="id") + text("]")
+        const [first, middle, last] = node.children;
+        if (
+          first.type === 'text' &&
+          first.value.trim() === '[embed' &&
+          middle.type === 'textDirective' &&
+          last.type === 'text' &&
+          last.value.trim() === ']'
+        ) {
+          embedId = middle.name;
+        }
+      }
+
+      if (!embedId) return;
+
+      const html = embedMap[embedId];
       if (!html) return;
 
       // Replace the paragraph with a raw HTML node

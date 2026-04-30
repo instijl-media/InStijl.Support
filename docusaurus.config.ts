@@ -3,6 +3,16 @@ import path from 'node:path';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import remarkEmbedShortcode from './plugins/remark-embed-shortcode.mjs';
+import rehypeRaw from 'rehype-raw';
+
+// MDX-specific HAST node types that rehype-raw must pass through untouched.
+const mdxNodeTypes = [
+  'mdxjsEsm',
+  'mdxFlowExpression',
+  'mdxJsxFlowElement',
+  'mdxJsxTextElement',
+  'mdxTextExpression',
+];
 
 const config: Config = {
   title: 'InStijl Support',
@@ -67,6 +77,7 @@ const config: Config = {
         routeBasePath: 'apps',
         sidebarPath: './sidebars.apps.ts',
         remarkPlugins: [remarkEmbedShortcode],
+        rehypePlugins: [[rehypeRaw, { passThrough: mdxNodeTypes }]],
       },
     ],
     [
@@ -77,6 +88,7 @@ const config: Config = {
         routeBasePath: 'themes',
         sidebarPath: './sidebars.themes.ts',
         remarkPlugins: [remarkEmbedShortcode],
+        rehypePlugins: [[rehypeRaw, { passThrough: mdxNodeTypes }]],
       },
     ],
     path.resolve(__dirname, 'plugins/products-data'),
