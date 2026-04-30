@@ -1,222 +1,334 @@
-# PagesCMS configuration for instijl.support
-# Docs: https://pagescms.org/docs/configuration
-
 media:
   input: static/img/products
   output: /img/products
 
 content:
-  ##############################################################################
-  # Apps — English (source content)
-  ##############################################################################
+  # ─── Apps (EN) ────────────────────────────────────────────────────────────
+
   - name: apps_en
-    label: "Apps (EN)"
+    label: Apps (EN)
     type: collection
     path: content/apps
-    filename: "{fields.slug}/index.mdx"
+    match: "*/index.mdx"
+    filename: "{title}/index.mdx"
     view:
       fields: [title, platform, status]
     fields:
-      - { name: title,    label: Title,    type: string, required: true }
-      - name: slug
-        label: "URL slug (folder name)"
+      - name: title
+        label: Title
         type: string
         required: true
-        pattern: "^[a-z0-9-]+$"
-        description: "Lowercase letters, numbers and hyphens only. Determines the URL."
       - name: type
         label: Type
-        type: select
-        required: true
-        options: [app, theme]
-        default: app
+        type: string
         hidden: true
       - name: platform
         label: Platform
         type: select
-        required: true
         options:
-          - { label: Lightspeed, value: lightspeed }
-          - { label: Shopify,    value: shopify }
-          - { label: Both,       value: both }
+          values:
+            - name: lightspeed
+              label: Lightspeed
+            - name: shopify
+              label: Shopify
+            - name: both
+              label: Both
       - name: status
         label: Status
         type: select
-        required: true
         options:
-          - { label: Active,     value: active }
-          - { label: Beta,       value: beta }
-          - { label: Deprecated, value: deprecated }
-        default: active
-      - { name: summary,  label: Summary (one sentence),  type: text, required: true }
-      - { name: logo,     label: Logo,    type: image }
-      - { name: cover,    label: "Cover image (16:9)", type: image }
-      - { name: order,    label: "Sort order", type: number }
+          values:
+            - name: active
+              label: Active
+            - name: beta
+              label: Beta
+            - name: deprecated
+              label: Deprecated
+      - name: summary
+        label: Summary
+        type: text
+        required: true
+      - name: logo
+        label: Logo
+        type: image
+      - name: order
+        label: Sort order
+        type: number
       - name: pricing
         label: Pricing
         type: object
         fields:
-          - { name: plan,     label: Plan,     type: string }
-          - { name: price,    label: Price,    type: string }
+          - name: plan
+            label: Plan
+            type: string
+          - name: price
+            label: Price
+            type: string
           - name: interval
             label: Interval
             type: select
-            options: [month, year, one-time]
+            options:
+              values:
+                - name: month
+                  label: Per month
+                - name: year
+                  label: Per year
+                - name: one-time
+                  label: One-time
           - name: currency
             label: Currency
             type: select
-            options: [EUR, USD, GBP]
+            options:
+              values:
+                - name: EUR
+                  label: EUR
+                - name: USD
+                  label: USD
+                - name: GBP
+                  label: GBP
       - name: links
-        label: "External links"
-        type: list
+        label: External links
+        type: object
+        list: true
         fields:
-          - { name: label, label: Label, type: string, required: true }
-          - { name: url,   label: URL,   type: string, required: true }
-      - { name: body, label: Content, type: rich-text }
+          - name: label
+            label: Label
+            type: string
+          - name: url
+            label: URL
+            type: string
+      - name: body
+        label: Content
+        type: rich-text
 
-  - name: apps_en_pages
+  - name: apps_en_subpages
     label: "Apps · subpages (EN)"
     type: collection
     path: content/apps
     match: "*/*.mdx"
-    exclude: "*/index.mdx"
+    exclude:
+      - "*/index.mdx"
+    operations:
+      create: false
     view:
       fields: [title]
     fields:
-      - { name: title,            label: Title,             type: string, required: true }
-      - { name: sidebar_position, label: "Sidebar position", type: number }
-      - { name: body,             label: Content,            type: rich-text }
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: sidebar_position
+        label: Sidebar position
+        type: number
+      - name: body
+        label: Content
+        type: rich-text
 
-  ##############################################################################
-  # Themes — English (source content)
-  ##############################################################################
+  # ─── Themes (EN) ──────────────────────────────────────────────────────────
+
   - name: themes_en
-    label: "Themes (EN)"
+    label: Themes (EN)
     type: collection
     path: content/themes
-    filename: "{fields.slug}/index.mdx"
+    match: "*/index.mdx"
+    filename: "{title}/index.mdx"
     view:
       fields: [title, platform, status]
     fields:
-      - { name: title,    label: Title,    type: string, required: true }
-      - name: slug
-        label: "URL slug (folder name)"
+      - name: title
+        label: Title
         type: string
         required: true
-        pattern: "^[a-z0-9-]+$"
       - name: type
         label: Type
-        type: select
-        required: true
-        options: [app, theme]
-        default: theme
+        type: string
         hidden: true
       - name: platform
         label: Platform
         type: select
-        required: true
         options:
-          - { label: Lightspeed, value: lightspeed }
-          - { label: Shopify,    value: shopify }
-          - { label: Both,       value: both }
+          values:
+            - name: lightspeed
+              label: Lightspeed
+            - name: shopify
+              label: Shopify
+            - name: both
+              label: Both
       - name: status
         label: Status
         type: select
-        required: true
         options:
-          - { label: Active,     value: active }
-          - { label: Beta,       value: beta }
-          - { label: Deprecated, value: deprecated }
-        default: active
-      - { name: summary,  label: Summary (one sentence),  type: text, required: true }
-      - { name: logo,     label: Logo,    type: image }
-      - { name: cover,    label: "Cover image (16:9)", type: image }
-      - { name: order,    label: "Sort order", type: number }
+          values:
+            - name: active
+              label: Active
+            - name: beta
+              label: Beta
+            - name: deprecated
+              label: Deprecated
+      - name: summary
+        label: Summary
+        type: text
+        required: true
+      - name: logo
+        label: Logo
+        type: image
+      - name: order
+        label: Sort order
+        type: number
       - name: pricing
         label: Pricing
         type: object
         fields:
-          - { name: plan,     label: Plan,     type: string }
-          - { name: price,    label: Price,    type: string }
+          - name: plan
+            label: Plan
+            type: string
+          - name: price
+            label: Price
+            type: string
           - name: interval
             label: Interval
             type: select
-            options: [month, year, one-time]
+            options:
+              values:
+                - name: month
+                  label: Per month
+                - name: year
+                  label: Per year
+                - name: one-time
+                  label: One-time
           - name: currency
             label: Currency
             type: select
-            options: [EUR, USD, GBP]
+            options:
+              values:
+                - name: EUR
+                  label: EUR
+                - name: USD
+                  label: USD
+                - name: GBP
+                  label: GBP
       - name: links
-        label: "External links"
-        type: list
+        label: External links
+        type: object
+        list: true
         fields:
-          - { name: label, label: Label, type: string, required: true }
-          - { name: url,   label: URL,   type: string, required: true }
-      - { name: body, label: Content, type: rich-text }
+          - name: label
+            label: Label
+            type: string
+          - name: url
+            label: URL
+            type: string
+      - name: body
+        label: Content
+        type: rich-text
 
-  - name: themes_en_pages
+  - name: themes_en_subpages
     label: "Themes · subpages (EN)"
     type: collection
     path: content/themes
     match: "*/*.mdx"
-    exclude: "*/index.mdx"
+    exclude:
+      - "*/index.mdx"
+    operations:
+      create: false
     view:
       fields: [title]
     fields:
-      - { name: title,            label: Title,             type: string, required: true }
-      - { name: sidebar_position, label: "Sidebar position", type: number }
-      - { name: body,             label: Content,            type: rich-text }
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: sidebar_position
+        label: Sidebar position
+        type: number
+      - name: body
+        label: Content
+        type: rich-text
 
-  ##############################################################################
-  # Apps — Dutch translations
-  ##############################################################################
+  # ─── Apps (NL) ────────────────────────────────────────────────────────────
+
   - name: apps_nl
-    label: "Apps (NL)"
+    label: Apps (NL)
     type: collection
     path: i18n/nl/docusaurus-plugin-content-docs-apps/current
     match: "*/index.mdx"
+    operations:
+      create: false
     view:
       fields: [title]
     fields:
-      - { name: title,   label: Title,    type: string, required: true }
-      - { name: summary, label: Summary,  type: text, required: true }
-      - { name: body,    label: Content,  type: rich-text }
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: summary
+        label: Summary
+        type: text
+        required: true
+      - name: body
+        label: Content
+        type: rich-text
 
-  - name: apps_nl_pages
-    label: "Apps · subpagina's (NL)"
+  - name: apps_nl_subpages
+    label: "Apps · subpages (NL)"
     type: collection
     path: i18n/nl/docusaurus-plugin-content-docs-apps/current
     match: "*/*.mdx"
-    exclude: "*/index.mdx"
+    exclude:
+      - "*/index.mdx"
+    operations:
+      create: false
     view:
       fields: [title]
     fields:
-      - { name: title, label: Title,   type: string, required: true }
-      - { name: body,  label: Content, type: rich-text }
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: body
+        label: Content
+        type: rich-text
 
-  ##############################################################################
-  # Themes — Dutch translations
-  ##############################################################################
+  # ─── Themes (NL) ──────────────────────────────────────────────────────────
+
   - name: themes_nl
     label: "Thema's (NL)"
     type: collection
     path: i18n/nl/docusaurus-plugin-content-docs-themes/current
     match: "*/index.mdx"
+    operations:
+      create: false
     view:
       fields: [title]
     fields:
-      - { name: title,   label: Title,    type: string, required: true }
-      - { name: summary, label: Summary,  type: text, required: true }
-      - { name: body,    label: Content,  type: rich-text }
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: summary
+        label: Summary
+        type: text
+        required: true
+      - name: body
+        label: Content
+        type: rich-text
 
-  - name: themes_nl_pages
-    label: "Thema's · subpagina's (NL)"
+  - name: themes_nl_subpages
+    label: "Thema's · subpages (NL)"
     type: collection
     path: i18n/nl/docusaurus-plugin-content-docs-themes/current
     match: "*/*.mdx"
-    exclude: "*/index.mdx"
+    exclude:
+      - "*/index.mdx"
+    operations:
+      create: false
     view:
       fields: [title]
     fields:
-      - { name: title, label: Title,   type: string, required: true }
-      - { name: body,  label: Content, type: rich-text }
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: body
+        label: Content
+        type: rich-text
