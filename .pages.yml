@@ -8,6 +8,7 @@ media:
 # the name/label/path values, and leave `fields: *overview-fields` as-is.
 
 x-overview-fields: &overview-fields
+  - { name: folder,    label: "Folder (URL slug, e.g. InStijlAI)", type: string, required: true }
   - { name: title,      label: "Title (EN)",    type: string, required: true }
   - { name: nl_title,   label: "Title (NL)",    type: string, required: true }
   - { name: summary,    label: "Summary (EN)",  type: text,   required: true }
@@ -58,7 +59,7 @@ content:
         type: collection
         path: content/apps
         match: "*/index.mdx"
-        filename: "{title}/index.mdx"
+        filename: "{folder}/index.mdx"
         fields: *overview-fields
 
       # All subpages in one collection — fill in "folder" to scope the file
@@ -85,7 +86,7 @@ content:
         type: collection
         path: content/themes
         match: "*/index.mdx"
-        filename: "{title}/index.mdx"
+        filename: "{folder}/index.mdx"
         fields: *overview-fields
 
       # All subpages in one collection — fill in "folder" to scope the file
