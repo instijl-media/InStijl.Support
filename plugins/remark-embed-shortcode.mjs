@@ -12,22 +12,26 @@
  * The plugin swaps the paragraph for a raw HTML node at build time.
  */
 
+import { createRequire } from 'node:module';
 import { visit } from 'unist-util-visit';
-import matter from 'gray-matter';
+
+const require = createRequire(import.meta.url);
+const matter = require('gray-matter');
 
 /** @type {import('unified').Plugin} */
 export default function remarkEmbedShortcode() {
   return (tree, vfile) => {
-    // Try vfile.data.frontMatter (Docusaurus) first, then parse from yaml AST node
-    let embeds = vfile.data?.frontMatter?.embeds;
+    // Docusaurus stores parsed frontmatter at vfile.data.frontMatter (capital M).
+    // Try both casings and also fall back to parsing the yaml AST node directly.
+    let embeds =
+      vfile.data?.frontMatter?.embeds ??
+      vfile.data?.frontmatter?.embeds;
 
     if (!embeds) {
-      // Parse the yaml frontmatter node directly from the AST
       for (const node of tree.children ?? []) {
         if (node.type === 'yaml') {
           try {
-            const fm = matter('---\n' + node.value + '\n---').data;
-            embeds = fm?.embeds;
+            embeds = matter('---\n' + node.value + '\n---').data?.embeds;
           } catch {}
           break;
         }
@@ -40,7 +44,7 @@ export default function remarkEmbedShortcode() {
     const embedMap = Object.fromEntries(
       embeds
         .filter((e) => e?.id && e?.html)
-        .map((e) => [e.id, e.html]),
+        .map((e) => [String(e.id).trim(), e.html]),
     );
 
     if (Object.keys(embedMap).length === 0) return;
@@ -55,7 +59,7 @@ export default function remarkEmbedShortcode() {
       const match = child.value.trim().match(/^\[embed:([^\]]+)\]$/);
       if (!match) return;
 
-      const html = embedMap[match[1]];
+      const html = embedMap[match[1].trim()];
       if (!html) return;
 
       // Replace the paragraph with a raw HTML node
