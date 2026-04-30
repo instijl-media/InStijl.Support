@@ -35,6 +35,7 @@ x-overview-fields: &overview-fields
   - { name: nl_body, label: "Content (NL)", type: rich-text }
 
 x-subpage-fields: &subpage-fields
+  - { name: folder,          label: "Product folder (slug, e.g. InStijlAI)", type: string, required: true }
   - { name: title,            label: "Title (EN)",       type: string, required: true }
   - { name: nl_title,         label: "Title (NL)",       type: string, required: true }
   - { name: sidebar_position, label: "Sidebar position", type: number }
@@ -51,65 +52,24 @@ content:
     type: group
     items:
 
-      # ── AI ────────────────────────────────────────────────────────────────
-      - name: app_ai
-        label: AI
-        type: group
-        items:
-          - name: app_ai_overview
-            label: Overview
-            type: file
-            path: content/apps/InStijlAI/index.mdx
-            fields: *overview-fields
+      # All overviews in one collection — add a new app by clicking "Add entry"
+      - name: app_overviews
+        label: Overviews
+        type: collection
+        path: content/apps
+        match: "*/index.mdx"
+        filename: "{title}/index.mdx"
+        fields: *overview-fields
 
-          - name: app_ai_subpages
-            label: Subpages
-            type: collection
-            path: content/apps/InStijlAI
-            match: "*.mdx"
-            exclude: ["index.mdx"]
-            filename: "{title}.mdx"
-            fields: *subpage-fields
-
-      # ── Postcode Check ────────────────────────────────────────────────────
-      - name: app_postcode_check
-        label: Postcode Check
-        type: group
-        items:
-          - name: app_postcode_check_overview
-            label: Overview
-            type: file
-            path: content/apps/instijl-postcode-check/index.mdx
-            fields: *overview-fields
-
-          - name: app_postcode_check_subpages
-            label: Subpages
-            type: collection
-            path: content/apps/instijl-postcode-check
-            match: "*.mdx"
-            exclude: ["index.mdx"]
-            filename: "{title}.mdx"
-            fields: *subpage-fields
-
-      # ── Shop Review Block ─────────────────────────────────────────────────
-      - name: app_shop_review_block
-        label: Shop Review Block
-        type: group
-        items:
-          - name: app_shop_review_block_overview
-            label: Overview
-            type: file
-            path: content/apps/instijl-shop-review-block/index.mdx
-            fields: *overview-fields
-
-          - name: app_shop_review_block_subpages
-            label: Subpages
-            type: collection
-            path: content/apps/instijl-shop-review-block
-            match: "*.mdx"
-            exclude: ["index.mdx"]
-            filename: "{title}.mdx"
-            fields: *subpage-fields
+      # All subpages in one collection — fill in "folder" to scope the file
+      - name: app_subpages
+        label: Subpages
+        type: collection
+        path: content/apps
+        match: "*/*.mdx"
+        exclude: ["*/index.mdx"]
+        filename: "{folder}/{title}.mdx"
+        fields: *subpage-fields
 
   # ═══════════════════════════════════════════════════════════════════════════
   # THEMES
@@ -119,42 +79,21 @@ content:
     type: group
     items:
 
-      # ── Inspire ───────────────────────────────────────────────────────────
-      - name: theme_inspire
-        label: Inspire
-        type: group
-        items:
-          - name: theme_inspire_overview
-            label: Overview
-            type: file
-            path: content/themes/inspire/index.mdx
-            fields: *overview-fields
+      # All overviews in one collection — add a new theme by clicking "Add entry"
+      - name: theme_overviews
+        label: Overviews
+        type: collection
+        path: content/themes
+        match: "*/index.mdx"
+        filename: "{title}/index.mdx"
+        fields: *overview-fields
 
-          - name: theme_inspire_subpages
-            label: Subpages
-            type: collection
-            path: content/themes/inspire
-            match: "*.mdx"
-            exclude: ["index.mdx"]
-            filename: "{title}.mdx"
-            fields: *subpage-fields
-
-      # ── Unity ─────────────────────────────────────────────────────────────
-      - name: theme_unity
-        label: Unity
-        type: group
-        items:
-          - name: theme_unity_overview
-            label: Overview
-            type: file
-            path: content/themes/unity/index.mdx
-            fields: *overview-fields
-
-          - name: theme_unity_subpages
-            label: Subpages
-            type: collection
-            path: content/themes/unity
-            match: "*.mdx"
-            exclude: ["index.mdx"]
-            filename: "{title}.mdx"
-            fields: *subpage-fields
+      # All subpages in one collection — fill in "folder" to scope the file
+      - name: theme_subpages
+        label: Subpages
+        type: collection
+        path: content/themes
+        match: "*/*.mdx"
+        exclude: ["*/index.mdx"]
+        filename: "{folder}/{title}.mdx"
+        fields: *subpage-fields
