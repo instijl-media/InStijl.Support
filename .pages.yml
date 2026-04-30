@@ -35,7 +35,7 @@ x-overview-fields: &overview-fields
   - { name: nl_body, label: "Content (NL)", type: rich-text }
 
 x-subpage-fields: &subpage-fields
-  - { name: folder,          label: "Product folder (slug, e.g. InStijlAI)", type: string, required: true }
+  - { name: folder,          label: "Product folder (slug, e.g. InStijlAI)", type: string }
   - { name: title,            label: "Title (EN)",       type: string, required: true }
   - { name: nl_title,         label: "Title (NL)",       type: string, required: true }
   - { name: sidebar_position, label: "Sidebar position", type: number }
