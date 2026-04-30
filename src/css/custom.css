@@ -224,7 +224,7 @@ code {
 }
 
 /* Indent nested subpages relative to their parent category */
-.menu__list .menu__list {
+.theme-doc-sidebar-menu.menu__list li:not(:first-child) {
   padding-left: 0.75rem;
   border-left: 2px solid var(--instijl-border);
   margin-left: 0.5rem;
