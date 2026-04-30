@@ -51,6 +51,7 @@ function syncFile(fm, nlFile, isIndex) {
   const nlFm = { title: fm.nl_title || fm.title };
   if (fm.sidebar_position !== undefined) nlFm.sidebar_position = fm.sidebar_position;
   if (isIndex && fm.nl_summary) nlFm.summary = fm.nl_summary;
+  if (Array.isArray(fm.embeds) && fm.embeds.length > 0) nlFm.embeds = fm.embeds;
 
   const nlBody = fm.nl_body || '';
   fs.writeFileSync(nlFile, matter.stringify(nlBody, nlFm), 'utf8');

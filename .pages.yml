@@ -34,6 +34,12 @@ x-overview-fields: &overview-fields
   - { name: type,    label: Type,         type: string, hidden: true }
   - { name: body,    label: "Content (EN)", type: rich-text }
   - { name: nl_body, label: "Content (NL)", type: rich-text }
+  - name: embeds
+    label: "HTML Embeds"
+    type: list
+    fields:
+      - { name: id,   label: "Shortcode ID (e.g. video1)", type: string, required: true }
+      - { name: html, label: "HTML / embed code",          type: code,   lang: html }
 
 x-subpage-fields: &subpage-fields
   - { name: folder,          label: "Product folder (slug, e.g. InStijlAI)", type: string }
@@ -42,6 +48,12 @@ x-subpage-fields: &subpage-fields
   - { name: sidebar_position, label: "Sidebar position", type: number }
   - { name: body,             label: "Content (EN)",     type: rich-text }
   - { name: nl_body,          label: "Content (NL)",     type: rich-text }
+  - name: embeds
+    label: "HTML Embeds"
+    type: list
+    fields:
+      - { name: id,   label: "Shortcode ID (e.g. video1)", type: string, required: true }
+      - { name: html, label: "HTML / embed code",          type: code,   lang: html }
 
 content:
 

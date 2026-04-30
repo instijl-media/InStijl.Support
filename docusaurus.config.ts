@@ -2,6 +2,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import path from 'node:path';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import remarkEmbedShortcode from './plugins/remark-embed-shortcode.mjs';
 
 const config: Config = {
   title: 'InStijl Support',
@@ -65,6 +66,7 @@ const config: Config = {
         path: 'content/apps',
         routeBasePath: 'apps',
         sidebarPath: './sidebars.apps.ts',
+        remarkPlugins: [remarkEmbedShortcode],
       },
     ],
     [
@@ -74,6 +76,7 @@ const config: Config = {
         path: 'content/themes',
         routeBasePath: 'themes',
         sidebarPath: './sidebars.themes.ts',
+        remarkPlugins: [remarkEmbedShortcode],
       },
     ],
     path.resolve(__dirname, 'plugins/products-data'),
