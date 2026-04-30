@@ -39,7 +39,7 @@ x-overview-fields: &overview-fields
     type: list
     fields:
       - { name: id,   label: "Shortcode ID (e.g. video1)", type: string, required: true }
-      - { name: html, label: "HTML / embed code",          type: code,   lang: html }
+      - { name: html, label: "HTML / embed code",          type: text }
 
 x-subpage-fields: &subpage-fields
   - { name: folder,          label: "Product folder (slug, e.g. InStijlAI)", type: string }
@@ -53,7 +53,7 @@ x-subpage-fields: &subpage-fields
     type: list
     fields:
       - { name: id,   label: "Shortcode ID (e.g. video1)", type: string, required: true }
-      - { name: html, label: "HTML / embed code",          type: code,   lang: html }
+      - { name: html, label: "HTML / embed code",          type: text }
 
 content:
 
