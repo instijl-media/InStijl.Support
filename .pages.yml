@@ -2,142 +2,221 @@
 # Docs: https://pagescms.org/docs/configuration
 
 media:
-  input: static/img
-  output: /img
-
-components:
-  product_link:
-    label: Link
-    fields:
-      - { name: label, label: Label, type: string, required: true }
-      - { name: url,   label: URL,   type: string, required: true, pattern: '^https?://' }
-
-  product_pricing:
-    label: Pricing
-    fields:
-      - { name: plan,     label: Plan,     type: string }
-      - { name: price,    label: Price,    type: string }
-      - { name: interval, label: Interval, type: select, options: [month, year, one-time] }
-      - { name: currency, label: Currency, type: select, options: [EUR, USD, GBP] }
+  input: static/img/products
+  output: /img/products
 
 content:
   ##############################################################################
-  # English source content (default locale)
+  # Apps — English (source content)
   ##############################################################################
   - name: apps_en
-    label: Apps (EN)
+    label: "Apps (EN)"
     type: collection
     path: content/apps
-    subfolders: true
-    match: '*/index.mdx'
+    filename: "{fields.slug}/index.mdx"
     view:
-      fields: [title, platform, type, status]
+      fields: [title, platform, status]
     fields:
       - { name: title,    label: Title,    type: string, required: true }
-      - { name: slug,     label: URL slug, type: string, required: true, pattern: '^/[a-z0-9-]+$' }
-      - { name: type,     label: Type,     type: select, required: true, options: [app, theme], default: app }
-      - { name: platform, label: Platform, type: select, required: true, options: [lightspeed, shopify, both] }
-      - { name: status,   label: Status,   type: select, required: true, options: [active, beta, deprecated], default: active }
-      - { name: summary,  label: Summary,  type: text, required: true }
-      - { name: logo,     label: Logo,     type: image }
-      - { name: cover,    label: Cover,    type: image }
-      - { name: order,    label: Sort order, type: number }
-      - { name: sidebar_position, label: Sidebar position, type: number }
-      - { name: pricing,  label: Pricing,  type: object, fields: '$components.product_pricing.fields' }
-      - { name: links,    label: External links, type: list, fields: '$components.product_link.fields' }
-      - { name: body,     label: Content,  type: text, format: markdown }
+      - name: slug
+        label: "URL slug (folder name)"
+        type: string
+        required: true
+        pattern: "^[a-z0-9-]+$"
+        description: "Lowercase letters, numbers and hyphens only. Determines the URL."
+      - name: type
+        label: Type
+        type: select
+        required: true
+        options: [app, theme]
+        default: app
+        hidden: true
+      - name: platform
+        label: Platform
+        type: select
+        required: true
+        options:
+          - { label: Lightspeed, value: lightspeed }
+          - { label: Shopify,    value: shopify }
+          - { label: Both,       value: both }
+      - name: status
+        label: Status
+        type: select
+        required: true
+        options:
+          - { label: Active,     value: active }
+          - { label: Beta,       value: beta }
+          - { label: Deprecated, value: deprecated }
+        default: active
+      - { name: summary,  label: Summary (one sentence),  type: text, required: true }
+      - { name: logo,     label: Logo,    type: image }
+      - { name: cover,    label: "Cover image (16:9)", type: image }
+      - { name: order,    label: "Sort order", type: number }
+      - name: pricing
+        label: Pricing
+        type: object
+        fields:
+          - { name: plan,     label: Plan,     type: string }
+          - { name: price,    label: Price,    type: string }
+          - name: interval
+            label: Interval
+            type: select
+            options: [month, year, one-time]
+          - name: currency
+            label: Currency
+            type: select
+            options: [EUR, USD, GBP]
+      - name: links
+        label: "External links"
+        type: list
+        fields:
+          - { name: label, label: Label, type: string, required: true }
+          - { name: url,   label: URL,   type: string, required: true }
+      - { name: body, label: Content, type: rich-text }
 
   - name: apps_en_pages
-    label: Apps · subpages (EN)
+    label: "Apps · subpages (EN)"
     type: collection
     path: content/apps
-    subfolders: true
-    match: '*/!(index).mdx'
+    match: "*/*.mdx"
+    exclude: "*/index.mdx"
     view:
       fields: [title]
     fields:
-      - { name: title,            label: Title,           type: string, required: true }
-      - { name: sidebar_position, label: Sidebar position, type: number }
-      - { name: body,             label: Content,         type: text, format: markdown }
+      - { name: title,            label: Title,             type: string, required: true }
+      - { name: sidebar_position, label: "Sidebar position", type: number }
+      - { name: body,             label: Content,            type: rich-text }
 
+  ##############################################################################
+  # Themes — English (source content)
+  ##############################################################################
   - name: themes_en
-    label: Themes (EN)
+    label: "Themes (EN)"
     type: collection
     path: content/themes
-    subfolders: true
-    match: '*/index.mdx'
+    filename: "{fields.slug}/index.mdx"
     view:
       fields: [title, platform, status]
     fields:
       - { name: title,    label: Title,    type: string, required: true }
-      - { name: slug,     label: URL slug, type: string, required: true, pattern: '^/[a-z0-9-]+$' }
-      - { name: type,     label: Type,     type: select, required: true, options: [app, theme], default: theme }
-      - { name: platform, label: Platform, type: select, required: true, options: [lightspeed, shopify, both] }
-      - { name: status,   label: Status,   type: select, required: true, options: [active, beta, deprecated], default: active }
-      - { name: summary,  label: Summary,  type: text, required: true }
-      - { name: logo,     label: Logo,     type: image }
-      - { name: cover,    label: Cover,    type: image }
-      - { name: order,    label: Sort order, type: number }
-      - { name: sidebar_position, label: Sidebar position, type: number }
-      - { name: pricing,  label: Pricing,  type: object, fields: '$components.product_pricing.fields' }
-      - { name: links,    label: External links, type: list, fields: '$components.product_link.fields' }
-      - { name: body,     label: Content,  type: text, format: markdown }
+      - name: slug
+        label: "URL slug (folder name)"
+        type: string
+        required: true
+        pattern: "^[a-z0-9-]+$"
+      - name: type
+        label: Type
+        type: select
+        required: true
+        options: [app, theme]
+        default: theme
+        hidden: true
+      - name: platform
+        label: Platform
+        type: select
+        required: true
+        options:
+          - { label: Lightspeed, value: lightspeed }
+          - { label: Shopify,    value: shopify }
+          - { label: Both,       value: both }
+      - name: status
+        label: Status
+        type: select
+        required: true
+        options:
+          - { label: Active,     value: active }
+          - { label: Beta,       value: beta }
+          - { label: Deprecated, value: deprecated }
+        default: active
+      - { name: summary,  label: Summary (one sentence),  type: text, required: true }
+      - { name: logo,     label: Logo,    type: image }
+      - { name: cover,    label: "Cover image (16:9)", type: image }
+      - { name: order,    label: "Sort order", type: number }
+      - name: pricing
+        label: Pricing
+        type: object
+        fields:
+          - { name: plan,     label: Plan,     type: string }
+          - { name: price,    label: Price,    type: string }
+          - name: interval
+            label: Interval
+            type: select
+            options: [month, year, one-time]
+          - name: currency
+            label: Currency
+            type: select
+            options: [EUR, USD, GBP]
+      - name: links
+        label: "External links"
+        type: list
+        fields:
+          - { name: label, label: Label, type: string, required: true }
+          - { name: url,   label: URL,   type: string, required: true }
+      - { name: body, label: Content, type: rich-text }
 
   - name: themes_en_pages
-    label: Themes · subpages (EN)
+    label: "Themes · subpages (EN)"
     type: collection
     path: content/themes
-    subfolders: true
-    match: '*/!(index).mdx'
+    match: "*/*.mdx"
+    exclude: "*/index.mdx"
+    view:
+      fields: [title]
     fields:
-      - { name: title,            label: Title,           type: string, required: true }
-      - { name: sidebar_position, label: Sidebar position, type: number }
-      - { name: body,             label: Content,         type: text, format: markdown }
+      - { name: title,            label: Title,             type: string, required: true }
+      - { name: sidebar_position, label: "Sidebar position", type: number }
+      - { name: body,             label: Content,            type: rich-text }
 
   ##############################################################################
-  # Dutch translations — same field shape, different paths
+  # Apps — Dutch translations
   ##############################################################################
   - name: apps_nl
-    label: Apps (NL)
+    label: "Apps (NL)"
     type: collection
     path: i18n/nl/docusaurus-plugin-content-docs-apps/current
-    subfolders: true
-    match: '*/index.mdx'
+    match: "*/index.mdx"
     view:
-      fields: [title, platform, status]
-    fields: '$content.apps_en.fields'
+      fields: [title]
+    fields:
+      - { name: title,   label: Title,    type: string, required: true }
+      - { name: summary, label: Summary,  type: text, required: true }
+      - { name: body,    label: Content,  type: rich-text }
 
   - name: apps_nl_pages
-    label: Apps · subpaginas (NL)
+    label: "Apps · subpagina's (NL)"
     type: collection
     path: i18n/nl/docusaurus-plugin-content-docs-apps/current
-    subfolders: true
-    match: '*/!(index).mdx'
-    fields: '$content.apps_en_pages.fields'
+    match: "*/*.mdx"
+    exclude: "*/index.mdx"
+    view:
+      fields: [title]
+    fields:
+      - { name: title, label: Title,   type: string, required: true }
+      - { name: body,  label: Content, type: rich-text }
 
+  ##############################################################################
+  # Themes — Dutch translations
+  ##############################################################################
   - name: themes_nl
-    label: Themes (NL)
+    label: "Thema's (NL)"
     type: collection
     path: i18n/nl/docusaurus-plugin-content-docs-themes/current
-    subfolders: true
-    match: '*/index.mdx'
+    match: "*/index.mdx"
     view:
-      fields: [title, platform, status]
-    fields: '$content.themes_en.fields'
+      fields: [title]
+    fields:
+      - { name: title,   label: Title,    type: string, required: true }
+      - { name: summary, label: Summary,  type: text, required: true }
+      - { name: body,    label: Content,  type: rich-text }
 
   - name: themes_nl_pages
-    label: Themes · subpaginas (NL)
+    label: "Thema's · subpagina's (NL)"
     type: collection
     path: i18n/nl/docusaurus-plugin-content-docs-themes/current
-    subfolders: true
-    match: '*/!(index).mdx'
-    fields: '$content.themes_en_pages.fields'
-
-  ##############################################################################
-  # Translatable UI strings (homepage / filter labels)
-  ##############################################################################
-  - name: ui_strings_nl
-    label: UI strings (NL)
-    type: file
-    path: i18n/nl/code.json
-    format: json
+    match: "*/*.mdx"
+    exclude: "*/index.mdx"
+    view:
+      fields: [title]
+    fields:
+      - { name: title, label: Title,   type: string, required: true }
+      - { name: body,  label: Content, type: rich-text }
