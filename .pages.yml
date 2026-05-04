@@ -70,12 +70,6 @@ content:
     items:
 
       # ── Overviews (one file entry per app) ────────────────────────────────
-      - name: app_ai_overview
-        label: "InStijl AI"
-        type: file
-        path: content/apps/InStijlAI/index.mdx
-        fields: *overview-fields
-
       - name: app_postcode_check_overview
         label: "Postcode Check"
         type: file
@@ -94,7 +88,6 @@ content:
         type: collection
         path: content/apps
         match: "*/*.mdx"
-        exclude: ["index.mdx"]
         filename: "{folder}/{title}.mdx"
         fields: *subpage-fields
 
@@ -127,6 +120,5 @@ content:
         type: collection
         path: content/themes
         match: "*/*.mdx"
-        exclude: ["index.mdx"]
         filename: "{folder}/{title}.mdx"
         fields: *subpage-fields
