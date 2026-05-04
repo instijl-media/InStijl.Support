@@ -224,7 +224,8 @@ code {
 }
 
 /* Indent nested subpages relative to their parent category */
-.theme-doc-sidebar-menu.menu__list li:not(:first-child) {
+.theme-doc-sidebar-menu.menu__list li.theme-doc-sidebar-item-link-level-1:not(:first-child),
+.theme-doc-sidebar-menu.menu__list li.theme-doc-sidebar-item-category-level-1:not(:first-child){
   padding-left: 0.75rem;
   border-left: 2px solid var(--instijl-border);
   margin-left: 0.5rem;
