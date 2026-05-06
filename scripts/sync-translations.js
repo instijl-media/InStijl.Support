@@ -36,6 +36,23 @@ let synced = 0;
 let skipped = 0;
 
 /**
+ * Recursively collect all .mdx files under `dir`.
+ * Returns an array of paths relative to `dir`.
+ */
+function walkMdx(dir, base = '') {
+  const results = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const rel = base ? `${base}/${entry.name}` : entry.name;
+    if (entry.isDirectory()) {
+      results.push(...walkMdx(path.join(dir, entry.name), rel));
+    } else if (entry.name.endsWith('.mdx')) {
+      results.push(rel);
+    }
+  }
+  return results;
+}
+
+/**
  * Write a single NL file from flat `nl_title` / `nl_summary` / `nl_body`
  * frontmatter keys on the EN source file.
  * @param {object}  fm       - Full frontmatter of the EN source file
@@ -70,18 +87,17 @@ for (const { enDir, i18nDir } of PLUGINS) {
     const productEnDir = path.join(enDir, product);
     const productNlDir = path.join(i18nDir, product);
 
-    const mdxFiles = fs.readdirSync(productEnDir)
-      .filter(f => f.endsWith('.mdx'));
+    const mdxFiles = walkMdx(productEnDir);
 
-    for (const filename of mdxFiles) {
-      const enFile = path.join(productEnDir, filename);
+    for (const relPath of mdxFiles) {
+      const enFile = path.join(productEnDir, relPath);
       const { data: fm } = matter.read(enFile);
 
       if (!fm.nl_title && !fm.nl_body) { skipped++; continue; }
 
-      fs.mkdirSync(productNlDir, { recursive: true });
-      const nlFile = path.join(productNlDir, filename);
-      syncFile(fm, nlFile, filename === 'index.mdx');
+      const nlFile = path.join(productNlDir, relPath);
+      fs.mkdirSync(path.dirname(nlFile), { recursive: true });
+      syncFile(fm, nlFile, path.basename(relPath) === 'index.mdx');
     }
   }
 }
