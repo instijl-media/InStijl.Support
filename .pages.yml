@@ -70,6 +70,12 @@ content:
     items:
 
       # ── Overviews (one file entry per app) ────────────────────────────────
+      - name: app_instijl_ai_overview
+        label: "InStijl.AI"
+        type: file
+        path: content/apps/instijl-ai/index.mdx
+        fields: *overview-fields
+
       - name: app_postcode_check_overview
         label: "Postcode Check"
         type: file
