@@ -16,7 +16,7 @@ const path = require('path');
 const matter = require('gray-matter');
 
 const ROOT = path.resolve(__dirname, '..');
-const OUTPUT_DIR = path.join(ROOT, 'ai-reference');
+const OUTPUT_DIR = path.join(ROOT, 'static', 'ai-reference');
 
 const PLUGINS = [
   {

@@ -7,7 +7,7 @@
     "docusaurus": "docusaurus",
     "start": "node scripts/sync-translations.js && docusaurus start",
     "start:nl": "node scripts/sync-translations.js && docusaurus start --locale nl",
-    "build": "node scripts/sync-translations.js && docusaurus build && node scripts/generate-ai-reference.js",
+    "build": "node scripts/sync-translations.js && node scripts/generate-ai-reference.js && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

@@ -51,7 +51,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ai-reference
-          path: ai-reference/
+          path: build/ai-reference/
           if-no-files-found: error
 
   deploy:
