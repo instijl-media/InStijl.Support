@@ -43,13 +43,19 @@ nl_body: >+
   - **Trigger:** Kies wanneer de workflow moet worden uitgevoerd:
     - **Bij elk nieuw product**
     - **Bij elke productupdate**
+    - **Bij elke nieuwe categorie** (met een vertraging tot 1 uur)
+    - **bij elke categorie update** (met een vertraging tot 1 uur)
     - *Meer triggers volgen binnenkort*
 
   ### 2. Actiestappen toevoegen
 
 
   Klik op **'Stap toevoegen'** om een of meer acties aan je workflow toe te
-  voegen. Je kunt kiezen uit verschillende soorten acties:
+  voegen. Je kunt kiezen uit verschillende soorten acties, afhankelijk van welke
+  trigger je hebt geselecteerd.
+
+
+  Voor product gerelateerde triggers kun je de volgende acties gebruiken:
 
 
   - **Product herschrijven:** Automatisch producttitels, beschrijvingen en
@@ -67,14 +73,14 @@ nl_body: >+
   producten je wilt en je eigen regels opgeven door middel van een prompt.
 
   - **Specificaties:** Vul de product-specificatie tabel in met AI, gebasseerd
-  op de beschikbare product informatie. Je kunt zelf kiezen en instructies geven hoe
-  de AI de specificaties moet invullen.
+  op de beschikbare product informatie. Je kunt zelf kiezen en instructies geven
+  hoe de AI de specificaties moet invullen.
 
-  - **Product Filters:** Vul de productfilters in met AI, gebasseerd op de 
-  beschikbare product informatie. Je kunt zelf je eigen regels meegeven.
+  - **Product Filters:** Vul de productfilters in met AI, gebasseerd op
+  de  beschikbare product informatie. Je kunt zelf je eigen regels meegeven.
 
-  - **Product Categorieën:** Vul de product categorieën in met AI, gebasseerd op de 
-  beschikbare product informatie. Je kunt zelf je eigen regels meegeven.
+  - **Product Categorieën:** Vul de product categorieën in met AI, gebasseerd op
+  de  beschikbare product informatie. Je kunt zelf je eigen regels meegeven.
 
   - **Product publiceren:** Maak het product automatisch zichtbaar in je webshop
   zodra het is verwerkt.
@@ -85,7 +91,19 @@ nl_body: >+
   - **Vertraging:** Voeg een tijdsbuffer toe (bijv. een vertraging van 5
   minuten) tussen stappen om acties soepel achter elkaar te laten verlopen.
 
-  - *Meer actiestappen volgen binnenkort*
+
+  Voor categorie gerelateerde triggers kun je deze acties gebruiken:
+
+
+  - **Vertraging:** Voeg een tijdsbuffer toe (bijv. een vertraging van 5
+  minuten) tussen stappen om acties soepel achter elkaar te laten verlopen.
+
+  - **Categorie herschrijven:** Automatisch titels en beschrijvingen
+  optimaliseren of herschrijven met behulp van AI-prompts of opgeslagen
+  templates uit je Promptbibliotheek.
+
+  - **Categorie vertalen:** Vertaal content naar verschillende talen met behulp
+  van AI-prompts of opgeslagen templates uit je Promptbibliotheek.
 
 
   Zodra je jouw stappen hebt geconfigureerd en ten minste één actie hebt
@@ -153,11 +171,15 @@ To create a new automation, navigate to **Automation**s via the sidebar and clic
 - **Trigger:** Choose when the workflow should execute:
   - **At each new product**
   - **At each product update**
+  - **At each new category** (with a delay of up to 1 hour)
+  - **At each category update** (with a delay of up to 1 hour)
   - *More triggers will folow soon*
 
 ### 2. Adding Action Steps
 
-Click on **'Add step'** to add one or more actions to your workflow. You can choose from several action types:
+Click on **'Add step'** to add one or more actions to your workflow. You can choose from several action types, based on the selected trigger.
+
+For product automations, you can add any of these action types:
 
 - **Product Rewrite:** Automatically optimize or rewrite product titles, descriptions, and metadata using AI prompts or saved templates from your Prompt Library.
 - **Product Translate:** Translate product content into different languages using AI prompts or saved templates from your Prompt Library.
@@ -168,6 +190,12 @@ Click on **'Add step'** to add one or more actions to your workflow. You can cho
 - **Unpublish Product:** Temporarily hide the product during processing or updates.
 - **Product Filters:** Fill productfilters with AI, based on available product information and your own rules.
 - **Product Categories:** Add product to the right categories with AI, based on available product information and your own rules.
+- **Delay:** Add a time buffer (e.g., a 5-minute delay) between steps to sequence actions smoothly.
+
+For category automations, you can choose from the action types:
+
+- **Category Rewrite:** Automatically optimize or rewrite category titles and  descriptions using AI prompts or saved templates from your Prompt Library.
+- **Category Translate:** Translate category content into different languages using AI prompts or saved templates from your Prompt Library.
 - **Delay:** Add a time buffer (e.g., a 5-minute delay) between steps to sequence actions smoothly.
 
 Once you have configured your steps and added at least one action, click **'Save workflow'** to activate it.
